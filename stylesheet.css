@@ -1,402 +1,554 @@
 * {
     font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
 }
 
 body {
     width: 100%;
-    max-width: 768px;
-    margin: 0 auto !important;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
+/* Contenedor principal - centrado para tablets */
+.container-fluid {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* ========== PAGE 1 ========== */
 #page1 {
     min-height: 100vh;
     background-image: url('https://i.pinimg.com/736x/25/c5/13/25c513598d3d27caf6c4fff9dc8e7edf.jpg');
-    height: 768px;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 40px;
-
-
-
-    .img {
-        background-image: url('./img/Hands.jpeg');
-        background-size: cover;
-        background-position: center;
-        border-top-right-radius: 40px;
-        border-top-left-radius: 40px;
-        height: 50vh;
-        color: white;
-        position: relative;
-
-
-        h1 {
-            font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-            top: 60%;
-            position: absolute;
-            font-size: 4rem;
-        }
-
-    }
-
-    .part2 {
-        position: relative;
-
-        h1 {
-            font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-            color: #484343;
-            font-size: 1.8rem;
-        }
-
-        p {
-            font-size: 0.8rem;
-        }
-
-        img {
-            position: absolute;
-            top: 13%;
-            width: 12%;
-        }
-
-        .versicle {
-            position: absolute;
-            top: 23%;
-        }
-
-        .date {
-            position: absolute;
-            top: 30%;
-        }
-
-        .clothe {
-            position: absolute;
-            top: 35%;
-        }
-
-        .counter {
-            position: absolute;
-            top: 40%;
-
-            color: white;
-
-            div {
-                width: 15%;
-            }
-
-            span {
-                background-color: #E4BA8A;
-                border-radius: 10px;
-                font-size: 0.75rem;
-            }
-        }
-
-        .invite {
-            position: absolute;
-            top: 150%;
-            z-index: 1;
-            font-size: 1.8rem;
-        }
-
-        .wedding-button-secondary {
-            background-color: #C8D9B8;
-            color: #2F4030;
-            width: 25%;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: Georgia, serif;
-            cursor: pointer;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-            position: absolute;
-            top: 65%;
-        }
-
-        .wedding-button-secondary:hover {
-            background-color: #8A9E7A;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-            transform: scale(1.05);
-        }
-
-        .wedding-button-secondary:active {
-            transform: scale(0.95);
-        }
-
-        .heart-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-    }
-
-
+    background-position: center;
+    overflow: visible;
+    /* Cambiado de hidden a visible */
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-#page2 {
+#page1 .img {
+    background-image: url('./img/Hands.jpeg');
+    background-size: cover;
+    background-position: center;
     min-height: 45vh;
+    /* Cambiado de height a min-height */
+    color: white;
+    position: relative;
+    flex-shrink: 0;
+}
+
+#page1 .img h1 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    bottom: 20px;
+    position: absolute;
+    font-size: clamp(2rem, 8vw, 3.5rem);
     width: 100%;
+    text-align: center;
+    left: 0;
+    right: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    padding: 0;
+}
+
+#page1 .part2 {
+    position: relative;
+    padding: 20px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    /* Permite que crezca según el contenido */
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Fondo semi-transparente para legibilidad */
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+#page1 .part2 h1 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    color: #484343;
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    margin: 0;
+    text-align: center;
+}
+
+#page1 .part2 p {
+    font-size: clamp(0.75rem, 3.5vw, 0.9rem);
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#page1 .part2 img {
+    width: clamp(60px, 15vw, 80px);
+    margin: 5px 0;
+}
+
+#page1 .part2 .date {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    margin: 5px 0;
+}
+
+/* Contador responsive */
+#page1 .part2 .counter {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 3vw, 15px);
+    width: 100%;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+#page1 .part2 .counter div {
+    background-color: #E4BA8A;
+    border-radius: 10px;
+    padding: 8px 0;
+    min-width: clamp(60px, 18vw, 80px);
+    text-align: center;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#page1 .part2 .counter span:first-child {
+    font-size: clamp(18px, 5vw, 24px);
+    font-weight: bold;
+    display: block;
+}
+
+#page1 .part2 .counter span:last-child {
+    font-size: clamp(10px, 3vw, 12px);
+    display: block;
+}
+
+#page1 .part2 .invite {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin: 15px 0 10px;
+    text-align: center;
+    width: 90%;
+}
+
+/* Botón universal */
+.wedding-button-secondary {
+    background-color: #C8D9B8;
+    color: #2F4030;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    font-family: Georgia, serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 15px 0;
+}
+
+.wedding-button-secondary:active {
+    transform: scale(0.97);
+}
+
+.heart-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ========== PAGE 2 ========== */
+#page2 {
+    min-height: auto;
+    padding: 30px 16px;
+    gap: 15px !important;
+    flex-wrap: wrap;
 }
 
 #page2 img {
-    width: 70%;
-    height: 500px;
-    overflow-x: hidden;
-    /* ¡CLAVE! Altura fija en píxeles */
+    width: calc(50% - 10px);
+    height: clamp(200px, 40vh, 350px);
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* ========== PAGE 3 ========== */
 #page3 {
     min-height: 100vh;
     background-image: url('https://i.pinimg.com/736x/25/c5/13/25c513598d3d27caf6c4fff9dc8e7edf.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-
-
-    .word {
-        position: relative;
-    }
-
-    .word1 {
-        position: absolute;
-        color: white;
-        margin-bottom: 0;
-        font-size: 2.8rem;
-    }
-
-    .word2 {
-        position: absolute;
-        top: 1%;
-        left: 50%;
-        font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-        color: #484343;
-        font-size: 3rem;
-    }
+    background-position: center;
+    padding: 40px 16px;
+    position: relative;
 }
 
-.address {
-    h1 {
-        font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-        color: #484343;
-        font-size: 2.5rem;
-
-    }
-
-    p {
-        font-size: 1.5rem;
-        color: #484343;
-    }
-
-    .btn {
-        color: white;
-        font-size: 1rem;
-        background-color: #E4BA8A;
-        width: 120%;
-
-    }
-
-
+#page3 .word {
+    text-align: center;
+    margin: 20px 0;
 }
 
+#page3 .word1 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    color: white;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#page3 .word2 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    color: #484343;
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    display: block;
+}
+
+#page3 img {
+    width: clamp(80px, 20vw, 120px);
+    margin: 20px auto;
+}
+
+#page3 .address {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#page3 .address h1 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    color: #484343;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+}
+
+#page3 .address p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    color: #484343;
+    word-break: break-word;
+}
+
+#page3 .address .btn {
+    color: white;
+    background-color: #E4BA8A;
+    padding: 10px 25px;
+    border-radius: 50px;
+    margin-top: 15px;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    white-space: nowrap;
+}
+
+/* ========== PAGE 4 ========== */
 #page4 {
     background-color: white;
-
-    .main1 {
-        color: #427246;
-        margin-bottom: 0;
-        font-size: 2rem;
-    }
-
-    .main2 {
-        font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-        color: #484343;
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-        color: #427246;
-        font-size: 1.5rem;
-    }
-
-
-    .cr {
-        .cir1 {
-            background-color: white;
-            width: 50px;
-            height: 50px;
-            border: 1px solid black;
-        }
-
-
-        .cir2 {
-            background-color: #8A9E7A;
-            width: 50px;
-            height: 50px;
-            border: none;
-        }
-
-        .cir3 {
-            background-color: #C8D9B8;
-            width: 50px;
-            height: 50px;
-            border: none;
-        }
-
-        .cir4 {
-            background-color: #2F4030;
-            width: 50px;
-            height: 50px;
-            border: none;
-        }
-
-        .cir5 {
-            background-color: #7DB84A;
-            width: 50px;
-            height: 50px;
-            border: none;
-        }
-
-
-    }
-
-    p {
-        font-size: 1.5rem;
-    }
-
+    padding: 40px 16px;
 }
 
-#page5 {
+#page4 .main1 {
+    color: #427246;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    margin-bottom: 10px;
+}
 
-    h1 {
-        font-size: 2rem;
+#page4 .main2 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    color: #484343;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+}
+
+#page4 h2 {
+    font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
+    color: #427246;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    margin: 15px 0;
+}
+
+#page4 .cr {
+    margin: 25px 0;
+}
+
+#page4 .cr h1 {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    margin-bottom: 20px;
+}
+
+#page4 .cr .d-flex {
+    gap: clamp(8px, 3vw, 15px);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#page4 .cr button {
+    width: clamp(40px, 12vw, 50px);
+    height: clamp(40px, 12vw, 50px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#page4 .cr button:active {
+    transform: scale(0.95);
+}
+
+.cir1 {
+    background-color: white;
+    border: 1px solid black !important;
+}
+
+.cir2 {
+    background-color: #8A9E7A;
+}
+
+.cir3 {
+    background-color: #C8D9B8;
+}
+
+.cir4 {
+    background-color: #2F4030;
+}
+
+.cir5 {
+    background-color: #7DB84A;
+}
+
+#page4 p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    margin: 8px 0;
+}
+
+/* ========== PAGE 5 ========== */
+#page5 {
+    padding: 40px 16px;
+    background-color: #f9f9f9;
+}
+
+#page5 h3 {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#page5 form {
+    width: 100%;
+}
+
+#page5 form input[type="text"] {
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+#page5 form label {
+    font-size: 12px;
+    color: #666;
+}
+
+.wedding-button {
+    background-color: #8A9E7A;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.wedding-button:active {
+    transform: scale(0.97);
+}
+
+/* ========== MEDIA QUERY UNIVERSAL PARA MÓVILES ========== */
+/* Esto funciona en TODOS los móviles (320px - 768px) */
+
+/* Móviles pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    #page1 .img {
+        height: 40vh;
     }
 
-    .wedding-button {
-        background-color: #8A9E7A;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 50px;
-        font-size: 18px;
-        font-family: Georgia, serif;
-        cursor: pointer;
-        display: inline-flex;
+    #page1 .img h1 {
+        font-size: 1.8rem;
+        bottom: 10px;
+    }
+
+    #page1 .part2 {
+        padding: 15px 12px 30px;
+        gap: 10px;
+    }
+
+    .wedding-button-secondary {
+        padding: 10px 16px;
+    }
+
+    #page2 img {
+        height: 180px;
+    }
+}
+
+/* Móviles medianos (376px - 428px) - iPhone 13/14/15/16 */
+@media screen and (min-width: 376px) and (max-width: 428px) {
+    #page1 .img {
+        height: 45vh;
+    }
+
+    #page2 img {
+        height: 220px;
+    }
+}
+
+/* Móviles grandes (429px - 600px) - Android grandes */
+@media screen and (min-width: 429px) and (max-width: 600px) {
+    .container-fluid {
+        max-width: 100%;
+    }
+
+    #page1 .img {
+        height: 50vh;
+    }
+
+    #page1 .part2 .counter div {
+        min-width: 80px;
+    }
+
+    #page2 img {
+        height: 280px;
+    }
+}
+
+/* Tablets pequeñas (601px - 768px) */
+@media screen and (min-width: 601px) and (max-width: 768px) {
+    .container-fluid {
+        max-width: 700px;
+        border-radius: 20px;
+        margin: 20px auto;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #page1 {
+        border-radius: 20px;
+    }
+
+    #page1 .img {
+        height: 55vh;
+    }
+
+    #page1 .part2 .counter div {
+        min-width: 90px;
+        padding: 12px 0;
+    }
+
+    #page1 .part2 .counter span:first-child {
+        font-size: 26px;
+    }
+
+    #page2 img {
+        height: 350px;
+    }
+
+    .wedding-button-secondary {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Orientación horizontal (pantalla acostada) */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    #page1 {
+        min-height: auto;
+    }
+
+    #page1 .img {
+        height: 100vh;
+    }
+
+    #page1 .part2 {
+        padding: 10px;
+    }
+
+    #page1 .part2 .counter div {
+        min-width: 60px;
+        padding: 5px 0;
+    }
+
+    #page2 img {
+        height: 250px;
+    }
+}
+
+/* ========== UTILIDADES RESPONSIVE ========== */
+/* Ajuste para inputs en móviles (evita zoom automático en iOS) */
+input,
+select,
+textarea {
+    font-size: 16px !important;
+}
+
+/* Ajuste de imágenes para que nunca se salgan */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mejora de touch targets (botones más fáciles de tocar) */
+button,
+.wedding-button,
+.wedding-button-secondary,
+.btn {
+    min-height: 44px;
+    cursor: pointer;
+}
+
+/* Evita desbordamiento horizontal */
+body {
+    overflow-x: hidden;
+}
+
+.container-fluid,
+.row,
+section {
+    overflow-x: hidden;
+}
+
+/* Ajuste para formularios en móviles */
+@media screen and (max-width: 600px) {
+    form .d-flex {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px !important;
+    }
+
+    form .d-flex>div {
+        width: 100%;
+    }
+
+    #page4 .d-flex.justify-content-center.gap-4 {
+        flex-direction: column;
         align-items: center;
-        gap: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+    }
+
+    #page4 .d-flex.justify-content-center.gap-4 img {
+        width: 90%;
         margin-bottom: 10px;
     }
 
-    .wedding-button:hover {
-        background-color: #7DB84A;
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        transform: scale(1.05);
+    #page4 .d-flex.justify-content-center.text-center.gap-4 {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .wedding-button:active {
-        transform: scale(0.95);
-    }
-
-    .heart-icon {
-        width: 20px;
-        height: 20px;
-        fill: currentColor;
-    }
-
-}
-
-
-
-@media screen and (min-width: 429px) and (max-width: 768px) {
-
-    #page1 {
-        min-height: 100vh;
-        height: 1200px;
-
-        .part2 {
-            .wedding-button-secondary {
-                width: 50%;
-                position: absolute;
-                top: 60%;
-            }
-
-        }
-
-    }
-}
-
-@media screen and (min-width: 376px) and (max-width: 428px) {
-
-    #page1 {
-        min-height: 100vh;
-        height: 1080px;
-
-        .part2 {
-            .wedding-button-secondary {
-                width: 50%;
-                position: absolute;
-                top: 65%;
-            }
-
-            img{
-                position: absolute;
-                top:15%;
-            }
-        }
-
-    }
-}
-
-@media screen and (max-width: 375px) {
-    #page1 {
-        min-height: 100vh;
-        height: 980px;
-
-        .img {
-            h1 {
-                font-size: 2.8rem;
-            }
-        }
-
-
-        .part2 {
-            .wedding-button-secondary {
-                width: 50%;
-                position: absolute;
-                top: 75%;
-            }
-        }
-
-    }
-
-
-
-    .part2 {
-        img {
-            margin-top: 40px;
-        }
-
-        .date {
-            margin-top: 15px;
-        }
-
-        .clothe {
-            margin-top: 10px;
-        }
-
-
-    }
-
-    #page3 {
-
-        .address {
-            text-align: center;
-        }
-
+    #page4 .d-flex.justify-content-center.text-center.gap-4 h2 {
+        width: 100%;
     }
 }

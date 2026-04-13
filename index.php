@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Wedding card</title>
     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
