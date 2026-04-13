@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wedding";
+$servername = "sql100.infinityfree.com";
+$username = "if0_41605874";
+$password = "ctVnlzQhMNSAF";
+$dbname = "if0_41605874_wedding";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,6 +19,7 @@ if ($conn->connect_error) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding card</title>
+    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -36,7 +37,7 @@ if ($conn->connect_error) {
                 <h1 class="text-center">Sebastian y Gina</h1>
                 <p class="col-10 text-center" style="color:#484343;">La historia más bonita que el destino escribió en nuestras vidas está por empezar...</p>
                 <h1 class="text-center">!Nos Casamos¡</h1>
-                <img src="/img/rings.png" class="col-4">
+                <img src="./img/rings.png" class="col-4">
                 <p class="col-8 text-center versicle" style="color:#484343;">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo. <br> Eclesiastés 4:9</p>
                 <h1 class="text-center date">27 de junio del 2026</h1>
                 <p class="col-8 text-center clothe" style="color:#484343;">Alista tu mejor traje, porque solo faltan.</p>
@@ -56,15 +57,15 @@ if ($conn->connect_error) {
             </div>
         </section>
         <section id="page2" class="d-none justify-content-center align-items-center gap-4 mt-2 mb-2">
-            <img src="/img/pic1.jpeg" class="pic1">
-            <img src="/img/pic2.jpeg" class="pic2">
+            <img src="./img/pic1.jpeg" class="pic1">
+            <img src="./img/pic2.jpeg" class="pic2">
         </section>
         <section id="page3" class="row d-none justify-content-center align-items-center gap-2">
             <div class="col-10 d-flex justify-content-center align-items-center flex-column word">
                 <span class="word1">NUESTRA</span>
                 <span class="word2">Boda</span>
             </div>
-            <img src="/img/cups.png" class="col-4">
+            <img src="./img/cups.png" class="col-4">
             <div class="col-10 d-flex align-items-center flex-column address">
                 <h1>Ceremonia y Recepcion</h1>
                 <p>Calle 44 # 44 - 66</p>
@@ -77,7 +78,7 @@ if ($conn->connect_error) {
         <section id="page4" class="row d-none">
             <h1 class="main1 col-12 text-center">CODIGO DE <br><span class="main2">Vestimenta</span></h1>
             <div class="d-flex justify-content-center gap-4">
-                <img src="/img/boy1.png" class="col-5 rounded-5"><img src="/img/girls.jpg" class="col-5 rounded-5">
+                <img src="./img/boy1.png" class="col-5 rounded-5"><img src="./img/girls.jpg" class="col-5 rounded-5">
             </div>
             <div class="d-flex justify-content-center text-center gap-4">
                 <h2 class="col-5">Formal</h2>
@@ -103,11 +104,11 @@ if ($conn->connect_error) {
             <form class="d-flex justify-content-center align-items-center flex-column gap-4" method="POST" action="confirmar.php">
                 <div class="d-flex justify-content-center align-items-center gap-3">
                     <div class="d-flex justify-content-center align-items-center flex-column">
-                        <input type="text" name="nombre" class="border-1 rounded-4 w-100" required>
+                        <input type="text" name="nombre" minlength="3" class="border-1 rounded-4 w-100" required>
                         <label for="nombre">Nombre</label>
                     </div>
                     <div class="d-flex justify-content-center align-items-center flex-column">
-                        <input type="text" name="apellido" class="border-1 rounded-4 w-100" required>
+                        <input type="text" name="apellido" minlength="3" class="border-1 rounded-4 w-100" required>
                         <label for="apellido">Apellido</label>
                     </div>
                 </div>

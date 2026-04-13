@@ -19,7 +19,7 @@ body {
 
 
     .img {
-        background-image: url('/img/Hands.jpeg');
+        background-image: url('./img/Hands.jpeg');
         background-size: cover;
         background-position: center;
         border-top-right-radius: 40px;
