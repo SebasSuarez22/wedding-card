@@ -41,19 +41,19 @@ if ($conn->connect_error) {
                 <p class="col-8 text-center versicle" style="color:#484343;">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo. <br> Eclesiastés 4:9</p>
                 <h1 class="text-center date">27 de junio del 2026</h1>
                 <p class="col-8 text-center clothe" style="color:#484343;">Alista tu mejor traje, porque solo faltan.</p>
-                <div class="counter d-flex justify-content-center w-100 gap-2">
+                <div class="counter d-flex justify-content-center w-100">
                     <div class="col-2 days d-flex justify-content-center flex-column text-center gap-1"><span style="font-size: 20px;" id="days">0</span><span>Días</span></div>
                     <div class="col-2 hours d-flex justify-content-center flex-column text-center gap-1"><span style="font-size: 20px;" id="hours">0</span><span>Horas</span></div>
                     <div class="col-2 minutes d-flex justify-content-center flex-column text-center gap-1"><span style="font-size: 20px;" id="minutes">0</span><span>Minutos</span></div>
                     <div class="col-2 seconds d-flex justify-content-center flex-column text-center gap-1"><span style="font-size: 20px;" id="seconds">0</span><span>Segundos</span></div>
                     <h1 class="text-center invite col-5">Te invitamos a ser parte de este momento especial</h1>
+                    <button class="wedding-button-secondary" onclick="verDetalles()">
+                        Ver Detalles
+                        <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </button>
                 </div>
-                <button class="wedding-button-secondary" onclick="verDetalles()">
-                    Ver Detalles
-                    <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                </button>
             </div>
         </section>
         <section id="page2" class="d-none justify-content-center align-items-center gap-4 mt-2 mb-2">
