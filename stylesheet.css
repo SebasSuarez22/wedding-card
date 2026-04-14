@@ -391,6 +391,11 @@ body {
 
 /* Móviles pequeños (hasta 375px) */
 @media screen and (max-width: 375px) {
+
+    .container-fluid {
+        max-width: 100%;
+    }
+
     #page1 .img {
         height: 40vh;
     }
@@ -416,6 +421,11 @@ body {
 
 /* Móviles medianos (376px - 428px) - iPhone 13/14/15/16 */
 @media screen and (min-width: 376px) and (max-width: 428px) {
+
+    .container-fluid {
+        max-width: 100%;
+    }
+
     #page1 .img {
         height: 45vh;
     }
