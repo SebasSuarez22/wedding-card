@@ -290,11 +290,39 @@ body {
     font-size: clamp(1.3rem, 5vw, 1.8rem);
 }
 
+/* ========== AJUSTE IMPORTANTE PARA IMÁGENES DE VESTIMENTA ========== */
+#page4 .d-flex.justify-content-center.align-items-center {
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#page4 .d-flex.justify-content-center.align-items-center > div {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+}
+
+#page4 .d-flex.justify-content-center.align-items-center img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Sobrescribir el estilo inline problemático */
+#page4 img[src="./img/girls.jpg"] {
+    height: auto !important;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
 #page4 h2 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
     color: #427246;
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    font-size: clamp(1rem, 4vw, 1.4rem);
     margin: 15px 0;
+    text-align: center;
 }
 
 #page4 .cr {
@@ -406,45 +434,60 @@ body {
 
 /* ========== MEDIA QUERY PARA IPHONE 15/16/17 (TODOS LOS MODELOS) ========== */
 @media screen and (min-width: 390px) and (max-width: 440px) and (min-height: 844px) {
-
+    
     .container-fluid {
         width: 100%;
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
     }
-
+    
     #page1 {
         min-height: 100dvh;
     }
-
+    
     #page1 .img {
         min-height: 42vh;
     }
-
+    
     #page1 .img h1 {
         font-size: 2rem;
         bottom: max(15px, env(safe-area-inset-bottom));
     }
-
+    
     #page1 .part2 {
         padding-bottom: max(30px, env(safe-area-inset-bottom));
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
     }
-
+    
     #page1 .part2 .counter {
         gap: 10px;
     }
-
+    
     #page1 .part2 .counter div {
         min-width: 70px;
         padding: 8px 0;
     }
-
+    
     #page2 img {
         height: 220px;
     }
-
+    
+    /* Ajuste de imágenes de vestimenta en iPhone */
+    #page4 .d-flex.justify-content-center.align-items-center {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center > div {
+        width: 80%;
+        max-width: 250px;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center img {
+        aspect-ratio: 3 / 4;
+    }
+    
     .wedding-button-secondary,
     .wedding-button,
     .btn {
@@ -458,16 +501,16 @@ body {
     #page1 .img {
         min-height: 45vh;
     }
-
+    
     #page1 .part2 .counter div {
         min-width: 85px;
         padding: 10px 0;
     }
-
+    
     #page1 .part2 .counter span:first-child {
         font-size: 24px;
     }
-
+    
     #page2 img {
         height: 260px;
     }
@@ -508,6 +551,16 @@ body {
     #page2 img {
         height: 180px;
     }
+    
+    /* Ajuste imágenes vestimenta móvil pequeño */
+    #page4 .d-flex.justify-content-center.align-items-center {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center > div {
+        width: 90%;
+    }
 }
 
 /* Móviles medianos (376px - 428px) */
@@ -522,6 +575,17 @@ body {
 
     #page2 img {
         height: 200px;
+    }
+    
+    /* Ajuste imágenes vestimenta móvil mediano */
+    #page4 .d-flex.justify-content-center.align-items-center {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center > div {
+        width: 70%;
+        max-width: 220px;
     }
 }
 
@@ -541,6 +605,17 @@ body {
 
     #page2 img {
         height: 250px;
+    }
+    
+    /* Ajuste imágenes vestimenta móvil grande */
+    #page4 .d-flex.justify-content-center.align-items-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center > div {
+        width: 45%;
+        max-width: 200px;
     }
 }
 
@@ -577,6 +652,16 @@ body {
     .wedding-button-secondary {
         padding: 15px 30px;
         font-size: 1.1rem;
+    }
+    
+    /* Ajuste imágenes vestimenta tablet */
+    #page4 .d-flex.justify-content-center.align-items-center {
+        flex-direction: row;
+    }
+    
+    #page4 .d-flex.justify-content-center.align-items-center > div {
+        width: 45%;
+        max-width: 250px;
     }
 }
 
@@ -672,7 +757,6 @@ section {
 
 /* Soporte para altura dinámica en todos los iPhone modernos */
 @supports (height: 100dvh) {
-
     #page1,
     #page3 {
         min-height: 100dvh;
