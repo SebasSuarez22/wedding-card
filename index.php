@@ -94,11 +94,12 @@ if ($conn->connect_error) {
         </section>
         <section id="page4" class="row d-none">
             <h1 class="main1 col-12 text-center">CODIGO DE <br><span class="main2">Vestimenta</span></h1>
-            <div class="d-flex justify-content-center gap-4">
-                <img src="./img/boy1.png" class="col-5 rounded-5"><img src="./img/girls.jpg" class="col-5 rounded-5">
-            </div>
-            <div class="d-flex justify-content-center text-center gap-4">
+            <div class="d-flex justify-content-center flex-column gap-4">
+                <img src="./img/boy1.png" class="col-5 rounded-5">
                 <h2 class="col-5">Formal</h2>
+            </div>
+            <div class="d-flex justify-content-center flex-column text-center gap-4">
+                <img src="./img/girls.jpg" class="col-5 rounded-5">
                 <h2 class="col-5">Vestido largo</h2>
             </div>
             <div class="cr d-flex justify-content-center text-center flex-column">
