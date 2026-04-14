@@ -11,19 +11,36 @@ body {
     overflow: visible;
 }
 
+.container-fluid {
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        width: 70%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-fluid {
+        width: 70%;
+        max-width: 1200px;
+        /* Limita el ancho máximo */
+    }
+}
 
 /* ========== PAGE 1 ========== */
 #page1 {
     min-height: 100vh;
-    background-image: url('https://i.pinimg.com/736x/07/88/0b/07880b797a8551e3887bec27c20747c0.jpg');
+    background-image: url('./img/backg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 5px solid red !important;
-
 }
 
 #page1 .img {
@@ -185,6 +202,9 @@ body {
     background-position: center;
     padding: 40px 16px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #page3 .word {
