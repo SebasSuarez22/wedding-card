@@ -12,20 +12,20 @@ body {
 }
 
 .container-fluid {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
     .container-fluid {
-        width: 70%;
+        width: 100%;
     }
 }
 
 @media (min-width: 1200px) {
     .container-fluid {
-        width: 70%;
+        width: 100%;
         max-width: 1200px;
         /* Limita el ancho máximo */
     }
