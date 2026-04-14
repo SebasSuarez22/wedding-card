@@ -16,15 +16,24 @@ if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['respue
     $apellido = $_POST['apellido'];
     $confirmacion = ($_POST['respuesta'] == "si") ? 1 : 0;
 
-    $sql = "INSERT INTO invitados (nombre, apellido, confirmacion) 
-            VALUES ('$nombre', '$apellido', $confirmacion)";
+    // ✅ PREPARED STATEMENT (SEGURO)
+    $stmt = $conn->prepare("INSERT INTO invitados (nombre, apellido, confirmacion) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $nombre, $apellido, $confirmacion);
     
-    $conn->query($sql);
-    header("Location: index.php");
+    if ($stmt->execute()) {
+        // Éxito
+        $stmt->close();
+        header("Location: index.php?success=1");
+    } else {
+        // Error
+        $stmt->close();
+        header("Location: index.php?error=1");
+    }
+} else {
+    // Faltan datos
+    header("Location: index.php?error=2");
 }
 
 $conn->close();
-
-// Volver a la página de la invitación
 exit();
 ?>

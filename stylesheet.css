@@ -8,28 +8,22 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    overflow: visible;
 }
 
-/* Contenedor principal - centrado para tablets */
-.container-fluid {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    min-height: 100vh;
-}
 
 /* ========== PAGE 1 ========== */
 #page1 {
     min-height: 100vh;
-    background-image: url('https://i.pinimg.com/736x/25/c5/13/25c513598d3d27caf6c4fff9dc8e7edf.jpg');
+    background-image: url('https://i.pinimg.com/736x/07/88/0b/07880b797a8551e3887bec27c20747c0.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    overflow: visible;
-    /* Cambiado de hidden a visible */
     position: relative;
     display: flex;
     flex-direction: column;
+    border: 5px solid red !important;
+
 }
 
 #page1 .img {
@@ -70,6 +64,9 @@ body {
     /* Fondo semi-transparente para legibilidad */
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible;
 }
 
 #page1 .part2 h1 {
@@ -182,7 +179,7 @@ body {
 /* ========== PAGE 3 ========== */
 #page3 {
     min-height: 100vh;
-    background-image: url('https://i.pinimg.com/736x/25/c5/13/25c513598d3d27caf6c4fff9dc8e7edf.jpg');
+    background-image: url('https://i.pinimg.com/736x/07/88/0b/07880b797a8551e3887bec27c20747c0.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
