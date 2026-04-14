@@ -8,13 +8,23 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    overflow: visible;
+    overflow-x: hidden;
+}
+
+/* ========== VARIABLES PARA SAFE AREAS (NOTCH / DYNAMIC ISLAND) ========== */
+:root {
+    --safe-area-top: env(safe-area-inset-top);
+    --safe-area-bottom: env(safe-area-inset-bottom);
+    --safe-area-left: env(safe-area-inset-left);
+    --safe-area-right: env(safe-area-inset-right);
 }
 
 .container-fluid {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 @media (min-width: 768px) {
@@ -27,13 +37,13 @@ body {
     .container-fluid {
         width: 100%;
         max-width: 1200px;
-        /* Limita el ancho máximo */
     }
 }
 
 /* ========== PAGE 1 ========== */
 #page1 {
     min-height: 100vh;
+    min-height: 100dvh;
     background-image: url('./img/backg.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -48,7 +58,6 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 45vh;
-    /* Cambiado de height a min-height */
     color: white;
     position: relative;
     flex-shrink: 0;
@@ -56,7 +65,7 @@ body {
 
 #page1 .img h1 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
     position: absolute;
     font-size: clamp(2rem, 8vw, 3.5rem);
     width: 100%;
@@ -66,19 +75,18 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
     padding: 0;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 #page1 .part2 {
     position: relative;
-    padding: 20px 16px 40px;
+    padding: 20px 16px max(40px, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     flex: 1;
-    /* Permite que crezca según el contenido */
     background-color: rgba(255, 255, 255, 0.95);
-    /* Fondo semi-transparente para legibilidad */
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     min-height: auto !important;
@@ -165,6 +173,8 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     margin: 15px 0;
+    margin-bottom: max(15px, env(safe-area-inset-bottom));
+    min-height: 44px;
 }
 
 .wedding-button-secondary:active {
@@ -196,6 +206,7 @@ body {
 /* ========== PAGE 3 ========== */
 #page3 {
     min-height: 100vh;
+    min-height: 100dvh;
     background-image: url('https://i.pinimg.com/736x/07/88/0b/07880b797a8551e3887bec27c20747c0.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -256,6 +267,9 @@ body {
     margin-top: 15px;
     font-size: clamp(0.8rem, 3vw, 0.9rem);
     white-space: nowrap;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* ========== PAGE 4 ========== */
@@ -305,6 +319,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.2s;
+    min-height: 44px;
 }
 
 #page4 .cr button:active {
@@ -340,6 +355,7 @@ body {
 /* ========== PAGE 5 ========== */
 #page5 {
     padding: 40px 16px;
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
     background-color: #f9f9f9;
 }
 
@@ -380,24 +396,99 @@ body {
     gap: 10px;
     transition: all 0.3s ease;
     margin-top: 20px;
+    margin-bottom: max(15px, env(safe-area-inset-bottom));
+    min-height: 44px;
 }
 
 .wedding-button:active {
     transform: scale(0.97);
 }
 
-/* ========== MEDIA QUERY UNIVERSAL PARA MÓVILES ========== */
-/* Esto funciona en TODOS los móviles (320px - 768px) */
+/* ========== MEDIA QUERY PARA IPHONE 15/16/17 (TODOS LOS MODELOS) ========== */
+@media screen and (min-width: 390px) and (max-width: 440px) and (min-height: 844px) {
 
+    .container-fluid {
+        width: 100%;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+    }
+
+    #page1 {
+        min-height: 100dvh;
+    }
+
+    #page1 .img {
+        min-height: 42vh;
+    }
+
+    #page1 .img h1 {
+        font-size: 2rem;
+        bottom: max(15px, env(safe-area-inset-bottom));
+    }
+
+    #page1 .part2 {
+        padding-bottom: max(30px, env(safe-area-inset-bottom));
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #page1 .part2 .counter {
+        gap: 10px;
+    }
+
+    #page1 .part2 .counter div {
+        min-width: 70px;
+        padding: 8px 0;
+    }
+
+    #page2 img {
+        height: 220px;
+    }
+
+    .wedding-button-secondary,
+    .wedding-button,
+    .btn {
+        padding: 12px 20px;
+        min-height: 48px;
+    }
+}
+
+/* iPhone 15/16/17 Pro Max (pantallas más grandes) */
+@media screen and (min-width: 430px) and (max-width: 440px) and (min-height: 920px) {
+    #page1 .img {
+        min-height: 45vh;
+    }
+
+    #page1 .part2 .counter div {
+        min-width: 85px;
+        padding: 10px 0;
+    }
+
+    #page1 .part2 .counter span:first-child {
+        font-size: 24px;
+    }
+
+    #page2 img {
+        height: 260px;
+    }
+}
+
+/* iPhone 15/16/17 Plus */
+@media screen and (min-width: 428px) and (max-width: 430px) and (min-height: 926px) {
+    #page2 img {
+        height: 240px;
+    }
+}
+
+/* ========== MEDIA QUERY UNIVERSAL PARA MÓVILES ========== */
 /* Móviles pequeños (hasta 375px) */
 @media screen and (max-width: 375px) {
-
     .container-fluid {
         max-width: 100%;
     }
 
     #page1 .img {
-        height: 40vh;
+        min-height: 38vh;
     }
 
     #page1 .img h1 {
@@ -419,30 +510,29 @@ body {
     }
 }
 
-/* Móviles medianos (376px - 428px) - iPhone 13/14/15/16 */
+/* Móviles medianos (376px - 428px) */
 @media screen and (min-width: 376px) and (max-width: 428px) {
-
     .container-fluid {
         max-width: 100%;
     }
 
     #page1 .img {
-        height: 45vh;
+        min-height: 42vh;
     }
 
     #page2 img {
-        height: 220px;
+        height: 200px;
     }
 }
 
-/* Móviles grandes (429px - 600px) - Android grandes */
+/* Móviles grandes (429px - 600px) */
 @media screen and (min-width: 429px) and (max-width: 600px) {
     .container-fluid {
         max-width: 100%;
     }
 
     #page1 .img {
-        height: 50vh;
+        min-height: 45vh;
     }
 
     #page1 .part2 .counter div {
@@ -450,7 +540,7 @@ body {
     }
 
     #page2 img {
-        height: 280px;
+        height: 250px;
     }
 }
 
@@ -468,7 +558,7 @@ body {
     }
 
     #page1 .img {
-        height: 55vh;
+        min-height: 50vh;
     }
 
     #page1 .part2 .counter div {
@@ -497,7 +587,7 @@ body {
     }
 
     #page1 .img {
-        height: 100vh;
+        min-height: 80vh;
     }
 
     #page1 .part2 {
@@ -510,7 +600,7 @@ body {
     }
 
     #page2 img {
-        height: 250px;
+        height: 200px;
     }
 }
 
@@ -577,5 +667,22 @@ section {
 
     #page4 .d-flex.justify-content-center.text-center.gap-4 h2 {
         width: 100%;
+    }
+}
+
+/* Soporte para altura dinámica en todos los iPhone modernos */
+@supports (height: 100dvh) {
+
+    #page1,
+    #page3 {
+        min-height: 100dvh;
+    }
+}
+
+/* Ajuste para safe areas en todos los elementos */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
     }
 }

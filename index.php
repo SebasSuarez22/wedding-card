@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Wedding card</title>
     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,13 +94,15 @@ if ($conn->connect_error) {
         </section>
         <section id="page4" class="row d-none">
             <h1 class="main1 col-12 text-center">CODIGO DE <br><span class="main2">Vestimenta</span></h1>
-            <div class="d-flex justify-content-center flex-column gap-4">
-                <img src="./img/boy1.png" class="col-5 rounded-5">
-                <h2 class="col-5">Formal</h2>
-            </div>
-            <div class="d-flex justify-content-center flex-column text-center gap-4">
-                <img src="./img/girls.jpg" class="col-5 rounded-5">
-                <h2 class="col-5">Vestido largo</h2>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-center flex-column gap-4">
+                    <img src="./img/boy1.png" class="col-5 rounded-5">
+                    <h2 class="col-5">Formal</h2>
+                </div>
+                <div class="d-flex justify-content-center flex-column text-center gap-4">
+                    <img src="./img/girls.jpg" class="col-5 rounded-5">
+                    <h2 class="col-5">Vestido largo</h2>
+                </div>
             </div>
             <div class="cr d-flex justify-content-center text-center flex-column">
                 <h1>Colores Reservados</h1>
