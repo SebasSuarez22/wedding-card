@@ -100,7 +100,7 @@ if ($conn->connect_error) {
                     <h2 class="col-5 text-center">Formal</h2>
                 </div>
                 <div class="d-flex justify-content-center align-items-center flex-column gap-4 w-100 m-0 h-100">
-                    <img src="./img/girls.jpg" class="col-5 rounded-5" style="height: 90%;">
+                    <img src="./img/girls.jpg" class="col-5 rounded-5" style="height: 85%;">
                     <h2 class="col-5 text-center">Vestido largo</h2>
                 </div>
             </div>
