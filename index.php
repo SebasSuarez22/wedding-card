@@ -45,7 +45,25 @@ if ($conn->connect_error) {
                 <h1>¡Nos Casamos!</h1>
                 <img src="./img/rings.png" alt="Anillos">
                 <p class="versicle">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
-                <h1 class="date">27 de junio del 2026</h1>
+
+                <!-- Padres -->
+                <div class="padres">
+                    <p class="padres-titulo">Con la bendición de Dios y nuestros queridos padres:</p>
+                    <div class="padres-cols">
+                        <div class="padres-col">
+                            <span>Antonio Suárez</span>
+                            <span>&amp;</span>
+                            <span>Carmen Peñaloza</span>
+                        </div>
+                        <div class="padres-col">
+                            <span>Manuel Pertuz</span>
+                            <span>&amp;</span>
+                            <span>Rosiris Martínez</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="date">5:00 PM · 27 de junio del 2026</h1>
                 <p class="clothe">Alista tu mejor traje, porque solo faltan.</p>
 
                 <!-- Contador -->

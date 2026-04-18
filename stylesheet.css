@@ -121,11 +121,56 @@ input, select, textarea {
 }
 
 #page1 .part2 .date {
-    font-family: 'Playfair Display', serif; /* legible, no cursiva */
+    font-family: 'Playfair Display', serif;
     font-size: clamp(0.95rem, 4vw, 1.25rem);
     font-weight: 700;
     color: #484343;
     text-align: center;
+}
+
+/* Padres */
+.padres {
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.padres-titulo {
+    font-style: italic;
+    font-size: clamp(0.72rem, 2.8vw, 0.85rem) !important;
+    color: #484343;
+    max-width: 100% !important;
+}
+
+.padres-cols {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 5vw, 32px);
+    width: 100%;
+}
+
+.padres-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+}
+
+.padres-col span {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.72rem, 2.8vw, 0.88rem);
+    color: #484343;
+    line-height: 1.4;
+}
+
+.padres-col span:nth-child(2) {
+    font-family: "Brush Script MT", cursive;
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    color: #8A9E7A;
 }
 
 #page1 .part2 .invite {
