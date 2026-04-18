@@ -4,15 +4,14 @@
 * {
     font-family: 'Playfair Display', serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     width: 100%;
     background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
-    /* Safe areas para dispositivos con notch / dynamic island */
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
 }
@@ -23,140 +22,130 @@ img {
     display: block;
 }
 
-/* Evita zoom automático en inputs iOS */
-input,
-select,
-textarea {
+input, select, textarea {
     font-size: 16px !important;
 }
 
-/* Touch targets mínimos */
-button,
-.wedding-button,
-.wedding-button-secondary,
-.btn,
-a {
+button, .wedding-button, .wedding-button-secondary, .btn, a {
     min-height: 44px;
     cursor: pointer;
 }
 
-/* ========================================
-   LAYOUT PRINCIPAL
-   ======================================== */
 .container-fluid {
     width: 100%;
     margin: 0 auto;
     overflow-x: hidden;
-}
-
-/* En pantallas grandes, centrar como tarjeta */
-@media (min-width: 769px) {
-    .container-fluid {
-        max-width: 480px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        border-radius: 20px;
-        margin: 20px auto;
-        overflow: hidden;
-    }
+    padding: 0 !important;
 }
 
 /* ========================================
    PAGE 1
    ======================================== */
 #page1 {
-    /* dvh es el estándar moderno — funciona bien en iOS Safari, Chrome Android, etc. */
-    min-height: 100svh; /* svh = small viewport height, se ajusta a la barra del navegador */
-    background-image: url('./img/backg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* SIN background aqui, SIN min-height forzado */
 }
 
-/* Imagen con manos */
+/* Imagen de manos */
 #page1 .img {
     background-image: url('./img/Hands.jpeg');
     background-size: cover;
     background-position: center;
-    min-height: 42svh;
-    color: white;
+    height: 40vmax;
+    min-height: 220px;
+    max-height: 380px;
+    width: 100%;
+    /* Solo relative, nunca absolute */
     position: relative;
-    flex-shrink: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    flex-shrink: 0;
 }
 
 #page1 .img h1 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
-    position: absolute;
-    bottom: max(16px, env(safe-area-inset-bottom));
-    left: 0;
-    right: 0;
-    font-size: clamp(1.8rem, 7vw, 3rem);
-    text-align: center;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-    margin: 0;
-    padding: 0 16px;
     color: white;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    padding: 16px;
+    width: 100%;
+    /* SIN position absolute */
 }
 
-/* Panel blanco inferior */
+/* Panel con fondo acuarela */
 #page1 .part2 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(10px, 2.5vw, 18px);
-    padding: clamp(16px, 4vw, 28px) clamp(12px, 4vw, 24px);
-    padding-bottom: max(clamp(24px, 5vw, 40px), env(safe-area-inset-bottom));
-    background-color: rgba(255, 255, 255, 0.97);
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    background-image: url('./img/backg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255,255,255,0.95);
+
+    width: 100%;
+    /* CLAVE: columna normal, sin position absolute */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: static !important;
+
+    gap: clamp(12px, 3vw, 20px);
+    padding-top: clamp(20px, 5vw, 32px);
+    padding-bottom: max(clamp(24px, 6vw, 40px), env(safe-area-inset-bottom));
+    padding-left: clamp(12px, 4vw, 24px);
+    padding-right: clamp(12px, 4vw, 24px);
 }
 
 #page1 .part2 h1 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
     color: #484343;
-    font-size: clamp(1.3rem, 5vw, 2rem);
-    margin: 0;
+    font-size: clamp(1.4rem, 5.5vw, 2.2rem);
     text-align: center;
+    line-height: 1.2;
 }
 
 #page1 .part2 p {
-    font-size: clamp(0.78rem, 3.2vw, 0.95rem);
-    margin: 0;
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem);
     color: #484343;
     text-align: center;
-}
-
-#page1 .part2 img {
-    width: clamp(55px, 14vw, 80px);
+    line-height: 1.5;
+    max-width: 85%;
 }
 
 #page1 .part2 .versicle {
     font-style: italic;
-    font-size: clamp(0.72rem, 3vw, 0.88rem);
+    font-size: clamp(0.72rem, 2.8vw, 0.85rem);
+    max-width: 80%;
 }
 
 #page1 .part2 .clothe {
-    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+    font-size: clamp(0.78rem, 3vw, 0.88rem);
+    max-width: 80%;
+}
+
+#page1 .part2 img {
+    width: clamp(55px, 14vw, 80px);
+    height: auto;
 }
 
 #page1 .part2 .date {
-    font-size: clamp(1rem, 4.5vw, 1.4rem);
+    font-size: clamp(1rem, 4.2vw, 1.3rem);
     font-weight: 600;
     color: #484343;
-    margin: 0;
+    font-family: 'Playfair Display', serif;
 }
 
 #page1 .part2 .invite {
-    font-size: clamp(0.95rem, 4vw, 1.4rem);
+    font-size: clamp(1rem, 4vw, 1.4rem);
     text-align: center;
-    width: 90%;
-    margin: 4px 0;
+    max-width: 88%;
+    line-height: 1.3;
     color: #484343;
 }
 
@@ -164,36 +153,44 @@ a {
    CONTADOR
    ======================================== */
 .counter {
-    display: flex;
-    justify-content: center;
-    gap: clamp(6px, 2.5vw, 14px);
-    width: 100%;
-    flex-wrap: nowrap; /* nunca en dos líneas */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    gap: clamp(6px, 2vw, 12px);
+    width: 92%;
+    position: static !important; /* nunca absolute */
 }
 
 .counter > div {
     background-color: #E4BA8A;
     border-radius: 10px;
-    padding: clamp(6px, 2vw, 10px) 0;
-    /* Usa flex para repartir igual sin importar el ancho de pantalla */
-    flex: 1;
-    min-width: 0; /* permite que se encoja */
-    max-width: 90px;
+    padding: clamp(6px, 2vw, 10px) 4px;
+    flex: 1 1 0;
+    min-width: 0;
     text-align: center;
     color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
 }
 
-.counter span:first-child {
-    font-size: clamp(16px, 5vw, 24px);
+.counter > div span:first-child {
+    font-size: clamp(15px, 4.5vw, 24px);
     font-weight: bold;
     display: block;
+    line-height: 1;
 }
 
-.counter span:last-child {
-    font-size: clamp(9px, 2.8vw, 12px);
+.counter > div span:last-child {
+    font-size: clamp(9px, 2.5vw, 12px);
     display: block;
-    opacity: 0.9;
+    opacity: 0.92;
+    line-height: 1;
 }
 
 /* ========================================
@@ -202,7 +199,7 @@ a {
 .wedding-button-secondary {
     background-color: #C8D9B8;
     color: #2F4030;
-    padding: clamp(10px, 3vw, 14px) clamp(16px, 5vw, 24px);
+    padding: clamp(10px, 2.8vw, 14px) clamp(18px, 5vw, 28px);
     border: none;
     border-radius: 50px;
     font-size: clamp(0.88rem, 3.5vw, 1rem);
@@ -211,21 +208,16 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 4px;
-    margin-bottom: max(8px, env(safe-area-inset-bottom));
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease;
 }
 
-.wedding-button-secondary:active {
-    transform: scale(0.96);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+.wedding-button-secondary:active { transform: scale(0.96); }
 
 .wedding-button {
     background-color: #8A9E7A;
     color: white;
-    padding: clamp(10px, 3vw, 14px) clamp(20px, 6vw, 28px);
+    padding: clamp(10px, 2.8vw, 14px) clamp(20px, 6vw, 28px);
     border: none;
     border-radius: 50px;
     font-size: clamp(0.88rem, 3.5vw, 1rem);
@@ -234,13 +226,9 @@ a {
     align-items: center;
     gap: 10px;
     transition: transform 0.2s ease;
-    margin-top: 16px;
-    margin-bottom: max(8px, env(safe-area-inset-bottom));
 }
 
-.wedding-button:active {
-    transform: scale(0.96);
-}
+.wedding-button:active { transform: scale(0.96); }
 
 .heart-icon {
     width: 18px;
@@ -250,26 +238,24 @@ a {
 }
 
 /* ========================================
-   PAGE 2 — FOTOS
+   PAGE 2
    ======================================== */
 #page2 {
-    padding: clamp(20px, 5vw, 40px) clamp(12px, 4vw, 24px);
-    gap: clamp(10px, 3vw, 20px) !important;
+    padding: clamp(20px, 5vw, 36px) clamp(12px, 4vw, 20px);
+    gap: clamp(10px, 3vw, 16px) !important;
     flex-wrap: wrap;
-    min-height: auto;
 }
 
 #page2 img {
-    /* Mitad del ancho menos el gap */
-    width: calc(50% - clamp(5px, 1.5vw, 10px));
-    height: clamp(180px, 38vw, 340px);
+    width: calc(50% - clamp(5px, 1.5vw, 8px));
+    height: clamp(180px, 38vw, 320px);
     object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* ========================================
-   PAGE 3 — UBICACIÓN
+   PAGE 3
    ======================================== */
 #page3 {
     min-height: 100svh;
@@ -278,22 +264,20 @@ a {
     background-size: cover;
     background-position: center;
     padding: clamp(30px, 8vw, 60px) clamp(12px, 4vw, 24px);
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: clamp(10px, 3vw, 20px);
 }
 
-#page3 .word {
-    text-align: center;
-    margin-bottom: clamp(10px, 3vw, 20px);
-}
+#page3 .word { text-align: center; }
 
 #page3 .word1 {
     font-size: clamp(1.6rem, 6vw, 2.5rem);
     color: white;
     display: block;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.35);
     letter-spacing: 0.05em;
 }
 
@@ -304,28 +288,25 @@ a {
     display: block;
 }
 
-#page3 img {
-    width: clamp(70px, 18vw, 110px);
-    margin: clamp(10px, 3vw, 20px) auto;
-}
+#page3 img { width: clamp(70px, 18vw, 110px); }
 
 #page3 .address {
     text-align: center;
-    margin-top: clamp(10px, 3vw, 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 #page3 .address h1 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
     color: #484343;
     font-size: clamp(1.3rem, 5vw, 2rem);
-    margin-bottom: 8px;
 }
 
 #page3 .address p {
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     color: #484343;
-    margin-bottom: 12px;
-    word-break: break-word;
 }
 
 #page3 .address .btn {
@@ -337,26 +318,25 @@ a {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    transition: transform 0.2s;
-}
-
-#page3 .address .btn:active {
-    transform: scale(0.96);
 }
 
 /* ========================================
-   PAGE 4 — VESTIMENTA
+   PAGE 4
    ======================================== */
 #page4 {
     background-color: white;
-    padding: clamp(30px, 7vw, 50px) clamp(12px, 4vw, 24px);
+    padding: clamp(28px, 7vw, 50px) clamp(12px, 4vw, 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 4vw, 28px);
 }
 
 #page4 .main1 {
     color: #427246;
     font-size: clamp(1.2rem, 5vw, 1.8rem);
-    margin-bottom: 24px;
     text-align: center;
+    width: 100%;
 }
 
 #page4 .main2 {
@@ -366,24 +346,22 @@ a {
     display: block;
 }
 
-/* Contenedor de imágenes de vestimenta */
 #page4 .vestimenta-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: clamp(12px, 4vw, 24px);
+    width: 100%;
     flex-wrap: wrap;
-    margin-bottom: 20px;
 }
 
 #page4 .vestimenta-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    /* Ocupa mitad del espacio disponible, mín 140px */
-    flex: 1 1 140px;
-    max-width: 200px;
+    gap: 10px;
+    flex: 1 1 130px;
+    max-width: 190px;
 }
 
 #page4 .vestimenta-item img {
@@ -391,30 +369,31 @@ a {
     aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 #page4 h2 {
     font-family: "Brush Script MT", "Lucida Calligraphy", "Lucida Handwriting", "Apple Chancery", cursive;
     color: #427246;
     font-size: clamp(1rem, 4vw, 1.4rem);
-    margin: 0;
     text-align: center;
 }
 
-/* Colores reservados */
 #page4 .cr {
-    margin: clamp(20px, 5vw, 35px) 0;
+    width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 
 #page4 .cr h1 {
     font-size: clamp(0.95rem, 4vw, 1.3rem);
-    margin-bottom: 16px;
     color: #484343;
 }
 
-#page4 .cr .circles {
+#page4 .circles {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -422,12 +401,11 @@ a {
     flex-wrap: wrap;
 }
 
-#page4 .cr .circles button {
-    width: clamp(38px, 11vw, 52px);
-    height: clamp(38px, 11vw, 52px);
+#page4 .circles button {
+    width: clamp(36px, 10vw, 50px);
+    height: clamp(36px, 10vw, 50px);
     border: none;
     border-radius: 50%;
-    cursor: default;
     pointer-events: none;
     flex-shrink: 0;
 }
@@ -440,17 +418,16 @@ a {
 
 #page4 p {
     font-size: clamp(0.88rem, 3.5vw, 1rem);
-    margin: 6px 0;
     text-align: center;
     color: #484343;
 }
 
 /* ========================================
-   PAGE 5 — CONFIRMACIÓN
+   PAGE 5
    ======================================== */
 #page5 {
-    padding: clamp(30px, 7vw, 50px) clamp(16px, 5vw, 32px);
-    padding-bottom: max(clamp(30px, 7vw, 50px), env(safe-area-inset-bottom));
+    padding: clamp(28px, 7vw, 50px) clamp(16px, 5vw, 32px);
+    padding-bottom: max(clamp(28px, 7vw, 50px), env(safe-area-inset-bottom));
     background-color: #f9f9f9;
 }
 
@@ -461,14 +438,20 @@ a {
     color: #484343;
 }
 
-/* Campos del formulario en columna (mobile) o fila (si caben) */
+#page5 form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 4vw, 22px);
+}
+
 #page5 .form-fields {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     gap: clamp(10px, 3vw, 16px);
     width: 100%;
-    /* En pantallas muy pequeñas se apilan */
     flex-wrap: wrap;
 }
 
@@ -476,7 +459,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Cada campo toma el espacio disponible, mínimo 130px */
     flex: 1 1 130px;
 }
 
@@ -487,12 +469,6 @@ a {
     border-radius: 25px;
     background: white;
     margin-bottom: 4px;
-    transition: border-color 0.2s;
-}
-
-#page5 form input[type="text"]:focus {
-    outline: none;
-    border-color: #8A9E7A;
 }
 
 #page5 form label {
@@ -500,65 +476,51 @@ a {
     color: #888;
 }
 
-#page5 .radio-group {
+.radio-group {
     display: flex;
     justify-content: center;
     gap: clamp(16px, 5vw, 28px);
-    margin: 4px 0;
 }
 
-#page5 .radio-group div {
+.radio-group div {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-#page5 .radio-group input[type="radio"] {
+.radio-group input[type="radio"] {
     width: 18px;
     height: 18px;
     accent-color: #8A9E7A;
     cursor: pointer;
 }
 
-#page5 .radio-group label {
+.radio-group label {
     font-size: clamp(0.9rem, 3.5vw, 1rem);
     color: #484343;
     cursor: pointer;
 }
 
 /* ========================================
-   ORIENTACIÓN HORIZONTAL (LANDSCAPE)
+   LANDSCAPE
    ======================================== */
 @media screen and (orientation: landscape) and (max-height: 500px) {
     #page1 .img {
-        min-height: 55vw;
+        height: 55vw;
+        min-height: 180px;
     }
-
-    #page1 .part2 {
-        gap: 8px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-
-    .counter > div {
-        padding: 5px 0;
-    }
-
-    #page3 {
-        min-height: auto;
-        padding: 30px 16px;
-    }
+    #page3 { min-height: auto; padding: 24px 16px; }
 }
 
 /* ========================================
-   TABLETAS Y ESCRITORIO (ya cubierto arriba con max-width en container)
+   DESKTOP
    ======================================== */
 @media (min-width: 769px) {
-    #page1 .img {
-        min-height: 45svh;
-    }
-
-    #page2 img {
-        height: 320px;
+    .container-fluid {
+        max-width: 460px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        border-radius: 20px;
+        margin: 24px auto;
+        overflow: hidden;
     }
 }
