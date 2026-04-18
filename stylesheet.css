@@ -19,11 +19,8 @@ img {
     display: block;
 }
 
-input,
-select,
-textarea {
-    font-size: 16px !important;
-    /* evita zoom en iOS */
+input, select, textarea {
+    font-size: 16px !important; /* evita zoom en iOS */
 }
 
 /* ========================================
@@ -67,7 +64,7 @@ textarea {
     color: white;
     font-size: clamp(2rem, 8vw, 3.5rem);
     text-align: center;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
     padding: 20px 16px;
     width: 100%;
 }
@@ -124,8 +121,7 @@ textarea {
 }
 
 #page1 .part2 .date {
-    font-family: 'Playfair Display', serif;
-    /* legible, no cursiva */
+    font-family: 'Playfair Display', serif; /* legible, no cursiva */
     font-size: clamp(0.95rem, 4vw, 1.25rem);
     font-weight: 700;
     color: #484343;
@@ -149,18 +145,16 @@ textarea {
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    flex-wrap: nowrap;
-    /* nunca en dos líneas */
+    flex-wrap: nowrap;       /* nunca en dos líneas */
     gap: clamp(5px, 2vw, 10px);
     width: 94%;
 }
 
-.counter>div {
+.counter > div {
     background-color: #E4BA8A;
     border-radius: 10px;
     padding: clamp(6px, 2vw, 10px) 2px;
-    flex: 1 1 0;
-    /* todos iguales, se encogen juntos */
+    flex: 1 1 0;             /* todos iguales, se encogen juntos */
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -168,18 +162,18 @@ textarea {
     justify-content: center;
     gap: 2px;
     color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     text-align: center;
 }
 
-.counter>div span:first-child {
+.counter > div span:first-child {
     font-size: clamp(14px, 4.5vw, 24px);
     font-weight: bold;
     line-height: 1;
     display: block;
 }
 
-.counter>div span:last-child {
+.counter > div span:last-child {
     font-size: clamp(8px, 2.4vw, 12px);
     line-height: 1;
     display: block;
@@ -201,14 +195,12 @@ textarea {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
     transition: transform 0.2s;
     min-height: 44px;
 }
 
-.wedding-button-secondary:active {
-    transform: scale(0.96);
-}
+.wedding-button-secondary:active { transform: scale(0.96); }
 
 .wedding-button {
     background-color: #8A9E7A;
@@ -225,9 +217,7 @@ textarea {
     min-height: 44px;
 }
 
-.wedding-button:active {
-    transform: scale(0.96);
-}
+.wedding-button:active { transform: scale(0.96); }
 
 .heart-icon {
     width: 17px;
@@ -240,8 +230,7 @@ textarea {
    PAGE 2 — FOTOS
    ======================================== */
 #page2 {
-    display: flex !important;
-    /* override d-none cuando se muestra */
+    display: flex !important;    /* override d-none cuando se muestra */
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -250,16 +239,14 @@ textarea {
     padding: clamp(16px, 4vw, 30px) clamp(10px, 3vw, 18px);
 }
 
-#page2.d-none {
-    display: none !important;
-}
+#page2.d-none { display: none !important; }
 
 #page2 img {
     width: calc(50% - clamp(4px, 1.5vw, 7px));
     height: clamp(170px, 36vw, 300px);
     object-fit: cover;
     border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* ========================================
@@ -278,19 +265,15 @@ textarea {
     padding: clamp(28px, 7vw, 56px) clamp(14px, 4vw, 24px);
 }
 
-#page3.d-none {
-    display: none !important;
-}
+#page3.d-none { display: none !important; }
 
-#page3 .word {
-    text-align: center;
-}
+#page3 .word { text-align: center; }
 
 #page3 .word1 {
     font-size: clamp(1.5rem, 5.5vw, 2.4rem);
     color: white;
     display: block;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
     letter-spacing: 0.05em;
 }
 
@@ -301,7 +284,7 @@ textarea {
     display: block;
 }
 
-#page3>img {
+#page3 > img {
     width: clamp(65px, 16vw, 105px);
 }
 
@@ -339,9 +322,7 @@ textarea {
     transition: transform 0.2s;
 }
 
-.btn-ubicacion:active {
-    transform: scale(0.96);
-}
+.btn-ubicacion:active { transform: scale(0.96); }
 
 /* ========================================
    PAGE 4 — VESTIMENTA
@@ -355,9 +336,7 @@ textarea {
     gap: clamp(14px, 3.5vw, 26px);
 }
 
-#page4.d-none {
-    display: none !important;
-}
+#page4.d-none { display: none !important; }
 
 #page4 .main1 {
     color: #427246;
@@ -397,7 +376,7 @@ textarea {
     aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 #page4 h2 {
@@ -437,33 +416,20 @@ textarea {
 }
 
 .cir {
-    display: inline-block;
+    display: block;
     width: clamp(34px, 9vw, 48px);
     height: clamp(34px, 9vw, 48px);
+    min-width: 34px;
+    min-height: 34px;
     border-radius: 50%;
     flex-shrink: 0;
 }
 
-.cir1 {
-    background-color: white;
-    border: 2px solid #bbb;
-}
-
-.cir2 {
-    background-color: #8A9E7A;
-}
-
-.cir3 {
-    background-color: #C8D9B8;
-}
-
-.cir4 {
-    background-color: #2F4030;
-}
-
-.cir5 {
-    background-color: #7DB84A;
-}
+.cir1 { background-color: white; border: 2px solid #bbb; }
+.cir2 { background-color: #8A9E7A; }
+.cir3 { background-color: #C8D9B8; }
+.cir4 { background-color: #2F4030; }
+.cir5 { background-color: #7DB84A; }
 
 #page4 p {
     font-size: clamp(0.85rem, 3.4vw, 1rem);
@@ -485,9 +451,7 @@ textarea {
     gap: clamp(14px, 4vw, 22px);
 }
 
-#page5.d-none {
-    display: none !important;
-}
+#page5.d-none { display: none !important; }
 
 #page5 h3 {
     font-size: clamp(1.1rem, 4.5vw, 1.7rem);
@@ -508,8 +472,7 @@ textarea {
     justify-content: center;
     gap: clamp(10px, 3vw, 16px);
     width: 100%;
-    flex-wrap: wrap;
-    /* se apilan solos en pantallas pequeñas */
+    flex-wrap: wrap;   /* se apilan solos en pantallas pequeñas */
 }
 
 .form-field {
@@ -569,10 +532,7 @@ textarea {
         height: 52vw;
         min-height: 160px;
     }
-
-    #page3 {
-        min-height: auto;
-    }
+    #page3 { min-height: auto; }
 }
 
 /* ========================================
@@ -582,7 +542,7 @@ textarea {
     .container-fluid {
         max-width: 450px !important;
         margin: 20px auto !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.13);
         border-radius: 20px;
         overflow: hidden;
     }
