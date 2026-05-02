@@ -194,5 +194,5 @@ if ($conn->connect_error) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
-
-</html>
+<!-- Latest update -->
+</html> 
