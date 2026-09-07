@@ -127,7 +127,7 @@ if (isset($_GET['success'])) {
 
             <div class="vestimenta-container">
                 <div class="vestimenta-item">
-                    <img src="./img/boy1.png" alt="Hombre formal">
+                    <img src="./img/boy1.jpg" alt="Hombre formal">
                     <h2>Formal</h2>
                 </div>
                 <div class="vestimenta-item">
