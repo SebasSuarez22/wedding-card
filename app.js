@@ -3,8 +3,17 @@ function actualizarContador() {
     const finalDate = new Date(2026, 5, 27); //Los meses van de 0 a 11 
 
 
-    //todo se trabaja en milisegundos 
+    //todo se trabaja en milisegundos
     const subs = finalDate - today;
+
+    if (subs <= 0) {
+        document.getElementById("days").textContent = 0;
+        document.getElementById("hours").textContent = 0;
+        document.getElementById("minutes").textContent = 0;
+        document.getElementById("seconds").textContent = 0;
+        return;
+    }
+
     const msPorDia = 86400000;
     const msPorHora = 3600000;
     const msPorminuto = 60000;

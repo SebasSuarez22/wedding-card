@@ -1,6 +1,4 @@
 <?php
-require __DIR__ . '/db.php';
-
 $rsvpMessage = null;
 $rsvpType = null;
 if (isset($_GET['success'])) {
