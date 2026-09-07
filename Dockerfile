@@ -1,11 +1,10 @@
 FROM php:8.2-apache
 
-RUN docker-php-ext-install mysqli \
-    && a2dismod mpm_event 2>/dev/null; a2enmod mpm_prefork
+RUN docker-php-ext-install mysqli
 
 COPY . /var/www/html/
 
 ENV PORT=80
 EXPOSE 80
 
-CMD ["sh", "-c", "sed -i \"s/Listen .*/Listen ${PORT}/\" /etc/apache2/ports.conf && sed -i \"s/:[0-9]*>/:${PORT}>/\" /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
+CMD ["sh", "-c", "find /etc/apache2/mods-enabled -maxdepth 1 -name 'mpm_*' -delete && a2enmod mpm_prefork > /dev/null && sed -i \"s/Listen .*/Listen ${PORT}/\" /etc/apache2/ports.conf && sed -i \"s/:[0-9]*>/:${PORT}>/\" /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
