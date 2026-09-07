@@ -1,5 +1,15 @@
 <?php
 require __DIR__ . '/db.php';
+
+$rsvpMessage = null;
+$rsvpType = null;
+if (isset($_GET['success'])) {
+    $rsvpMessage = '¡Gracias por confirmar tu asistencia!';
+    $rsvpType = 'success';
+} elseif (isset($_GET['error'])) {
+    $rsvpMessage = 'Ups, algo salió mal al confirmar. Por favor intenta de nuevo.';
+    $rsvpType = 'error';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -146,6 +156,13 @@ require __DIR__ . '/db.php';
         <!-- ===== PAGE 5: CONFIRMACIÓN ===== -->
         <section id="page5" class="d-none">
             <h3>Confirma tu asistencia</h3>
+
+            <?php if ($rsvpMessage): ?>
+                <div class="rsvp-message rsvp-<?= htmlspecialchars($rsvpType) ?>">
+                    <?= htmlspecialchars($rsvpMessage) ?>
+                </div>
+            <?php endif; ?>
+
             <form method="POST" action="confirmar.php">
 
                 <div class="form-fields">
@@ -184,6 +201,15 @@ require __DIR__ . '/db.php';
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
+    <?php if ($rsvpMessage): ?>
+    <script>
+        verDetalles();
+        const page5 = document.getElementById('page5');
+        if (page5) {
+            setTimeout(() => page5.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+        }
+    </script>
+    <?php endif; ?>
 </body>
 <!-- Latest update -->
 </html> 
