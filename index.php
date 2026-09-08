@@ -62,7 +62,7 @@ if (isset($_GET['success'])) {
                     </div>
                 </div>
 
-                <h1 class="date">5:00 PM · 27 de junio del 2026</h1>
+                <h1 class="date">5:00 PM · 27 de junio del 2031</h1>
                 <p class="clothe">Alista tu mejor traje, porque solo faltan.</p>
 
                 <!-- Contador -->

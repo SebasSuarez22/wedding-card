@@ -1,6 +1,6 @@
 function actualizarContador() {
     const today = new Date();
-    const finalDate = new Date(2026, 5, 27); //Los meses van de 0 a 11 
+    const finalDate = new Date(2031, 5, 27); //Los meses van de 0 a 11 
 
 
     //todo se trabaja en milisegundos
