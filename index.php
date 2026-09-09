@@ -155,12 +155,6 @@ if (isset($_GET['success'])) {
         <section id="page5" class="d-none">
             <h3>Confirma tu asistencia</h3>
 
-            <?php if ($rsvpMessage): ?>
-                <div class="rsvp-message rsvp-<?= htmlspecialchars($rsvpType) ?>">
-                    <?= htmlspecialchars($rsvpMessage) ?>
-                </div>
-            <?php endif; ?>
-
             <form method="POST" action="confirmar.php">
 
                 <div class="form-fields">
@@ -195,17 +189,28 @@ if (isset($_GET['success'])) {
             </form>
         </section>
 
+        <!-- ===== GRACIAS: RESULTADO DEL RSVP ===== -->
+        <section id="gracias" class="d-none">
+            <div class="gracias-card">
+                <img src="./img/rings.png" alt="Anillos">
+                <?php if ($rsvpType === 'error'): ?>
+                    <h1 class="gracias-title gracias-error">Ups, algo salió mal al confirmar</h1>
+                    <p>Por favor intenta de nuevo.</p>
+                    <a href="index.php" class="wedding-button-secondary">Volver a intentar</a>
+                <?php else: ?>
+                    <h1 class="gracias-title gracias-success">¡Gracias por confirmar tu asistencia!</h1>
+                    <p>Nos vemos el 27 de junio del 2031</p>
+                <?php endif; ?>
+            </div>
+        </section>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
     <?php if ($rsvpMessage): ?>
     <script>
-        verDetalles();
-        const page5 = document.getElementById('page5');
-        if (page5) {
-            setTimeout(() => page5.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
-        }
+        mostrarGracias();
     </script>
     <?php endif; ?>
 </body>

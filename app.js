@@ -59,4 +59,15 @@ function verDetalles() {
     }
 }
 
+// Tras confirmar el RSVP, ocultar toda la invitación y dejar solo la tarjeta de gracias
+function mostrarGracias() {
+    ['page1', 'page2', 'page3', 'page4', 'page5'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('d-none');
+    });
+
+    const gracias = document.getElementById('gracias');
+    if (gracias) gracias.classList.remove('d-none');
+}
+
 
