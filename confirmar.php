@@ -8,7 +8,7 @@ if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['respue
     $confirmacion = ($_POST['respuesta'] == "si") ? 1 : 0;
 
     // ✅ PREPARED STATEMENT (SEGURO)
-    $stmt = $conn->prepare("INSERT INTO invitados (nombre, apellido, confirmacion) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO invitados (nombre, apellido, confirmacion, creado_en) VALUES (?, ?, ?, NOW())");
     $stmt->bind_param("ssi", $nombre, $apellido, $confirmacion);
     
     if ($stmt->execute()) {
