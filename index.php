@@ -1,4 +1,6 @@
 <?php
+$config = require __DIR__ . '/config.php';
+
 $rsvpMessage = null;
 $rsvpType = null;
 if (isset($_GET['success'])) {
@@ -8,6 +10,10 @@ if (isset($_GET['success'])) {
     $rsvpMessage = 'Ups, algo salió mal al confirmar. Por favor intenta de nuevo.';
     $rsvpType = 'error';
 }
+
+$tema = basename($config['tema'] ?? '');
+$temaPath = __DIR__ . '/themes/' . $tema . '.css';
+$temaHref = ($tema !== '' && $tema !== 'sage-gold' && file_exists($temaPath)) ? 'themes/' . $tema . '.css' : null;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +21,7 @@ if (isset($_GET['success'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Wedding card</title>
+    <title><?= htmlspecialchars($config['titulo_pagina']) ?></title>
     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +30,10 @@ if (isset($_GET['success'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS propio SIEMPRE después de Bootstrap para sobrescribir -->
     <link rel="stylesheet" href="stylesheet.css">
+    <?php if ($temaHref): ?>
+    <!-- Tema de colores de esta boda -->
+    <link rel="stylesheet" href="<?= htmlspecialchars($temaHref) ?>">
+    <?php endif; ?>
 </head>
 
 <body>
@@ -34,35 +44,32 @@ if (isset($_GET['success'])) {
 
             <!-- Imagen de manos -->
             <div class="img">
-                <h1>Sebastian y Gina</h1>
+                <h1><?= htmlspecialchars($config['novio'] . ' y ' . $config['novia']) ?></h1>
             </div>
 
             <!-- Panel blanco con contenido -->
             <div class="part2">
-                <h1>Sebastian y Gina</h1>
-                <p>La historia más bonita que el destino escribió en nuestras vidas está por empezar...</p>
+                <h1><?= htmlspecialchars($config['novio'] . ' y ' . $config['novia']) ?></h1>
+                <p><?= htmlspecialchars($config['historia']) ?></p>
                 <h1>¡Nos Casamos!</h1>
                 <img src="./img/rings.png" alt="Anillos">
-                <p class="versicle">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
+                <p class="versicle"><?= htmlspecialchars($config['versiculo_texto']) ?><br><?= htmlspecialchars($config['versiculo_cita']) ?></p>
 
                 <!-- Padres -->
                 <div class="padres">
                     <p class="padres-titulo">Con la bendición de Dios y nuestros queridos padres:</p>
                     <div class="padres-cols">
+                        <?php foreach ($config['padres'] as $pareja): ?>
                         <div class="padres-col">
-                            <span>Antonio Suárez</span>
+                            <span><?= htmlspecialchars($pareja[0]) ?></span>
                             <span>&amp;</span>
-                            <span>Carmen Peñaloza</span>
+                            <span><?= htmlspecialchars($pareja[1]) ?></span>
                         </div>
-                        <div class="padres-col">
-                            <span>Manuel Pertuz</span>
-                            <span>&amp;</span>
-                            <span>Rosiris Martínez</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
-                <h1 class="date">5:00 PM · 27 de junio del 2031</h1>
+                <h1 class="date"><?= htmlspecialchars($config['fecha_texto']) ?></h1>
                 <p class="clothe">Alista tu mejor traje, porque solo faltan.</p>
 
                 <!-- Contador -->
@@ -111,9 +118,9 @@ if (isset($_GET['success'])) {
             </div>
             <img src="./img/cups.png" alt="Copas">
             <div class="address">
-                <h1>Ceremonia y Recepción</h1>
-                <p>Calle 44 # 44 - 66</p>
-                <a href="https://www.google.com/maps/dir//Hotel+Genova,+Cl.+44+%2344-66,+Nte.+Centro+Historico,+Barranquilla,+Atl%C3%A1ntico/@10.9902587,-74.7902482,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x8ef42d63a462df4f:0xd3221847d001bfd0!2m2!1d-74.7844285!2d10.985023?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                <h1><?= htmlspecialchars($config['ubicacion_titulo']) ?></h1>
+                <p><?= htmlspecialchars($config['ubicacion_direccion']) ?></p>
+                <a href="<?= htmlspecialchars($config['ubicacion_maps_url']) ?>" target="_blank">
                     <button class="btn-ubicacion">VER UBICACION</button>
                 </a>
             </div>
@@ -146,9 +153,9 @@ if (isset($_GET['success'])) {
             </div>
 
             <h2 class="lluvia">Lluvia de Sobres</h2>
-            <p>TE ESPERAMOS</p>
+            <p><?= htmlspecialchars($config['despedida']) ?></p>
             <p>Con amor</p>
-            <h2>Sebastian y Gina</h2>
+            <h2><?= htmlspecialchars($config['novio'] . ' y ' . $config['novia']) ?></h2>
         </section>
 
         <!-- ===== PAGE 5: CONFIRMACIÓN ===== -->
@@ -199,7 +206,7 @@ if (isset($_GET['success'])) {
                     <a href="index.php" class="wedding-button-secondary">Volver a intentar</a>
                 <?php else: ?>
                     <h1 class="gracias-title gracias-success">¡Gracias por confirmar tu asistencia!</h1>
-                    <p>Nos vemos el 27 de junio del 2031</p>
+                    <p>Nos vemos el <?= htmlspecialchars($config['fecha_texto']) ?></p>
                 <?php endif; ?>
             </div>
         </section>
@@ -207,6 +214,9 @@ if (isset($_GET['success'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.WEDDING_DATE = <?= json_encode($config['fecha']) ?>;
+    </script>
     <script src="app.js"></script>
     <?php if ($rsvpMessage): ?>
     <script>

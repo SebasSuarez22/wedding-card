@@ -1,6 +1,8 @@
 function actualizarContador() {
     const today = new Date();
-    const finalDate = new Date(2031, 5, 27); //Los meses van de 0 a 11 
+    const wd = window.WEDDING_DATE || { anio: 2031, mes: 6, dia: 27, hora: 17, minuto: 0 };
+    // wd.mes viene en formato humano (1-12); Date lo espera en 0-11
+    const finalDate = new Date(wd.anio, wd.mes - 1, wd.dia, wd.hora ?? 0, wd.minuto ?? 0); 
 
 
     //todo se trabaja en milisegundos
