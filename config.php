@@ -7,7 +7,7 @@
 return [
     // Tema de colores: 'sage-gold' | 'rose-burgundy' | 'blue-silver' | 'beige-granate' | 'blanco-negro'
     // (los archivos de tema viven en /themes)
-    'tema' => 'rose-burgundy',
+    'tema' => 'sage-gold',
 
     'titulo_pagina' => 'Sebastian & Gina',
 
