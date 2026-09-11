@@ -412,7 +412,7 @@ textarea {
    PAGE 4 — VESTIMENTA
    ======================================== */
 #page4 {
-    background-color: white;
+    background-color: var(--color-bg);
     padding: clamp(26px, 6vw, 48px) clamp(14px, 4vw, 28px);
     display: flex;
     flex-direction: column;
