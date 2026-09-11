@@ -5,9 +5,9 @@
  * mismos nombres de archivo) — no hace falta tocar index.php ni app.js.
  */
 return [
-    // Tema de colores: 'sage-gold' | 'rose-burgundy' | 'blue-silver'
+    // Tema de colores: 'sage-gold' | 'rose-burgundy' | 'blue-silver' | 'beige-granate' | 'blanco-negro'
     // (los archivos de tema viven en /themes)
-    'tema' => 'sage-gold',
+    'tema' => 'rose-burgundy',
 
     'titulo_pagina' => 'Sebastian & Gina',
 
