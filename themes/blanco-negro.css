@@ -1,0 +1,18 @@
+/* ========================================
+   TEMA: Blanco / Negro
+   Extraído de un monograma de boda minimalista
+   en Canva (trazo 100% negro sobre blanco).
+   Cárgalo después de stylesheet.css para
+   sobreescribir la paleta por defecto.
+   ======================================== */
+:root {
+    --color-text: #1a1a1a;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f6f6f6;
+    --color-accent: #2b2b2b;
+    --color-accent-light: #e3e3e3;
+    --color-accent-dark: #171717;
+    --color-accent-darkest: #000000;
+    --color-accent-bright: #595959;
+    --color-gold: #3d3d3d;
+}

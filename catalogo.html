@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Invitaciones</title>
+<link rel="shortcut icon" href="./img/rings.png" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Great+Vibes&family=Jost:wght@400;500;600&display=swap">
+<style>
+  :root{
+    /* — Escenario del catálogo (fijo, oscuro) — */
+    --stage-bg:#181414;
+    --stage-bg-2:#262020;
+    --stage-line:#3a3232;
+    --stage-text:#f3ece4;
+    --stage-muted:#bdaea0;
+    --stage-muted-2:#8f8074;
+  }
+
+  /* ===== Paletas por tema (data-theme en <body>) ===== */
+  [data-theme="sage-gold"]{
+    --card-text:#484343; --card-bg:#f5f5f5; --card-bg-alt:#f9f9f9;
+    --card-accent:#8a9e7a; --card-accent-light:#c8d9b8; --card-accent-dark:#427246;
+    --card-accent-darkest:#2f4030; --card-accent-bright:#7db84a; --card-gold:#e4ba8a;
+  }
+  [data-theme="rose-burgundy"]{
+    --card-text:#4a2f30; --card-bg:#faf3f2; --card-bg-alt:#fdf7f6;
+    --card-accent:#b5657a; --card-accent-light:#e8c3c9; --card-accent-dark:#7a2e3d;
+    --card-accent-darkest:#4a1620; --card-accent-bright:#c94f6d; --card-gold:#d4a373;
+  }
+  [data-theme="beige-granate"]{
+    --card-text:#484343; --card-bg:#faf5e6; --card-bg-alt:#fdfbf3;
+    --card-accent:#51252f; --card-accent-light:#d9c3ad; --card-accent-dark:#3a1a21;
+    --card-accent-darkest:#24100f; --card-accent-bright:#8a3a3f; --card-gold:#c9a15a;
+  }
+  [data-theme="blanco-negro"]{
+    --card-text:#1a1a1a; --card-bg:#ffffff; --card-bg-alt:#f6f6f6;
+    --card-accent:#2b2b2b; --card-accent-light:#e3e3e3; --card-accent-dark:#171717;
+    --card-accent-darkest:#000000; --card-accent-bright:#595959; --card-gold:#3d3d3d;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--stage-bg);
+    color:var(--stage-text);
+    font-family:'Jost',system-ui,sans-serif;
+    padding:clamp(24px,5vw,56px) clamp(16px,5vw,32px);
+    padding-block:clamp(24px,5vw,56px);
+  }
+
+  .stage{
+    max-width:1040px;
+    margin:0 auto;
+    background:
+      radial-gradient(1200px 500px at 15% -10%, var(--stage-bg-2), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, var(--stage-bg-2), transparent 55%);
+  }
+
+  .page-head{ margin-bottom:clamp(20px,4vw,32px); }
+  .eyebrow{
+    font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--stage-muted); margin:0 0 10px;
+  }
+  .page-title{
+    font-family:'Playfair Display',serif; font-weight:600; font-size:clamp(1.8rem,4.6vw,2.6rem);
+    line-height:1.1; margin:0; color:var(--stage-text); text-wrap:balance;
+  }
+
+  /* ===== Pestañas ===== */
+  .tabs{
+    display:flex; flex-wrap:wrap; gap:8px;
+    padding-bottom:clamp(24px,4vw,36px);
+    margin-bottom:clamp(28px,5vw,44px);
+    border-bottom:1px solid var(--stage-line);
+  }
+  .tab{
+    appearance:none; border:1px solid var(--stage-line); background:transparent;
+    color:var(--stage-muted); font-family:'Jost',sans-serif; font-size:0.86rem; font-weight:500;
+    padding:10px 18px; border-radius:50px; cursor:pointer; transition:all 0.15s ease;
+  }
+  .tab:hover{ color:var(--stage-text); border-color:var(--stage-muted-2); }
+  .tab.active{
+    background:var(--stage-text); color:var(--stage-bg); border-color:var(--stage-text);
+  }
+  .tab:focus-visible{ outline:2px solid var(--stage-text); outline-offset:2px; }
+
+  /* ===== Cuerpo: mockup + panel ===== */
+  .panel{ display:none; }
+  .panel.active{ display:grid; }
+  .panel{
+    grid-template-columns:minmax(0,300px) minmax(280px,1fr);
+    gap:clamp(28px,5vw,64px);
+    align-items:start;
+  }
+  @media (max-width:760px){ .panel{ grid-template-columns:1fr; justify-items:center; } }
+
+  .device{
+    width:100%; max-width:300px; background:#0c0808; border-radius:34px; padding:12px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.45), 0 0 0 1px var(--stage-line);
+  }
+  .device-notch{ width:64px; height:6px; border-radius:6px; background:#000; margin:2px auto 8px; opacity:0.5; }
+  .device-screen{ background:var(--card-bg); border-radius:24px; overflow:hidden; font-family:'Playfair Display',serif; color:var(--card-text); }
+
+  .card-hero{
+    height:250px;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%),
+      linear-gradient(160deg, var(--card-accent) 0%, var(--card-accent-dark) 55%, var(--card-accent-darkest) 100%);
+    display:flex; align-items:flex-end; justify-content:center; position:relative;
+  }
+  .card-hero svg{ position:absolute; top:26px; left:50%; transform:translateX(-50%); opacity:0.9; }
+  .card-hero h1{
+    font-family:'Great Vibes',cursive; font-weight:400; color:#fff;
+    font-size:2rem; margin:0 0 14px; text-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+
+  .card-panel{ background:var(--card-bg-alt); padding:22px 20px 30px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
+  .card-panel h2{ font-family:'Great Vibes',cursive; font-weight:400; font-size:1.5rem; margin:0; color:var(--card-text); }
+  .card-panel p{ font-size:0.72rem; line-height:1.5; margin:0; max-width:85%; color:var(--card-text); }
+  .card-verse{ font-style:italic; font-size:0.66rem; color:var(--card-accent-dark); max-width:80%; margin:2px 0 4px; }
+  .card-date{ font-weight:700; font-size:0.85rem; color:var(--card-text); margin-top:2px; }
+
+  .card-counter{ display:flex; gap:6px; width:94%; margin-top:4px; }
+  .card-counter div{ flex:1; background:var(--card-gold); color:#fff; border-radius:8px; padding:7px 2px; text-align:center; }
+  .card-counter strong{ display:block; font-size:1rem; line-height:1.1; }
+  .card-counter span{ display:block; font-size:0.55rem; opacity:0.9; letter-spacing:0.02em; }
+
+  .card-cta{
+    margin-top:6px; background:var(--card-accent-light); color:var(--card-accent-darkest);
+    border:none; border-radius:50px; padding:10px 22px; font-family:'Jost',sans-serif;
+    font-size:0.78rem; font-weight:500; display:inline-flex; align-items:center; gap:8px;
+  }
+
+  .card-photos{ display:flex; gap:8px; padding:16px; background:var(--card-bg); }
+  .card-photos div{ flex:1; aspect-ratio:3/4; border-radius:12px; background:linear-gradient(155deg, var(--card-accent-light), var(--card-accent)); }
+
+  .card-rsvp{ background:var(--card-bg-alt); padding:20px 18px 26px; text-align:center; }
+  .card-rsvp h3{ font-family:'Playfair Display',serif; font-size:0.95rem; margin:0 0 12px; color:var(--card-text); }
+  .card-rsvp .field{ height:34px; border-radius:20px; background:#fff; border:1px solid var(--card-accent-light); margin-bottom:8px; }
+  .card-rsvp .btn{ margin-top:8px; background:var(--card-accent); color:#fff; border-radius:50px; padding:9px 20px; display:inline-block; font-size:0.78rem; }
+
+  .specs{ display:flex; flex-direction:column; gap:clamp(24px,4vw,36px); }
+  .specs-block h3{
+    font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--stage-muted); margin:0 0 14px; font-weight:500;
+  }
+
+  .palette-list{ display:flex; flex-wrap:wrap; gap:14px 22px; list-style:none; margin:0; padding:0; }
+  .palette-list li{ display:flex; align-items:center; gap:10px; font-size:0.82rem; color:var(--stage-text); font-variant-numeric:tabular-nums; }
+  .palette-list .dot{ width:20px; height:20px; border-radius:50%; flex-shrink:0; border:1px solid rgba(255,255,255,0.2); background:var(--dot); }
+  .palette-list .hex{ color:var(--stage-muted-2); font-size:0.76rem; }
+
+  .feature-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .feature-list li{ display:flex; align-items:flex-start; gap:10px; font-size:0.92rem; line-height:1.4; color:var(--stage-text); }
+  .feature-list li::before{ content:''; width:6px; height:6px; margin-top:8px; border-radius:50%; background:var(--card-accent-bright); flex-shrink:0; }
+
+  .quote{
+    font-family:'Playfair Display',serif; font-style:italic; font-size:1rem; line-height:1.5;
+    color:var(--stage-text); border-left:2px solid var(--card-accent); padding-left:18px; margin:0;
+  }
+  .quote span{
+    display:block; margin-top:8px; font-family:'Jost',sans-serif; font-style:normal;
+    font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--stage-muted);
+  }
+
+  .catalog-foot{
+    margin-top:clamp(36px,6vw,56px); padding-top:20px; border-top:1px solid var(--stage-line);
+    font-size:0.76rem; color:var(--stage-muted-2);
+  }
+</style>
+</head>
+<body data-theme="sage-gold">
+
+<div class="stage">
+
+  <div class="page-head">
+    <p class="eyebrow">Catálogo de invitaciones digitales</p>
+    <h1 class="page-title">4 paletas, una misma plantilla</h1>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Modelos de invitación">
+    <button class="tab active" role="tab" aria-selected="true" data-tema="sage-gold">Sage &amp; Gold</button>
+    <button class="tab" role="tab" aria-selected="false" data-tema="rose-burgundy">Rosado &amp; Burdeos</button>
+    <button class="tab" role="tab" aria-selected="false" data-tema="beige-granate">Beige &amp; Granate</button>
+    <button class="tab" role="tab" aria-selected="false" data-tema="blanco-negro">Blanco &amp; Negro</button>
+  </nav>
+
+  <!-- ===== SAGE & GOLD ===== -->
+  <section class="panel active" id="panel-sage-gold">
+    <div class="device">
+      <div class="device-notch"></div>
+      <div class="device-screen">
+        <div class="card-hero">
+          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
+          <h1>Valentina &amp; Mateo</h1>
+        </div>
+        <div class="card-panel">
+          <h2>¡Nos Casamos!</h2>
+          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
+          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
+          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
+          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
+          <span class="card-cta">Ver Detalles ♥</span>
+        </div>
+        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
+        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="specs-block">
+        <h3>Paleta</h3>
+        <ul class="palette-list">
+          <li><span class="dot" style="--dot:#8a9e7a"></span>Acento principal <span class="hex">#8A9E7A</span></li>
+          <li><span class="dot" style="--dot:#427246"></span>Acento oscuro <span class="hex">#427246</span></li>
+          <li><span class="dot" style="--dot:#c8d9b8"></span>Acento claro <span class="hex">#C8D9B8</span></li>
+          <li><span class="dot" style="--dot:#2f4030"></span>Verde profundo <span class="hex">#2F4030</span></li>
+          <li><span class="dot" style="--dot:#e4ba8a"></span>Dorado <span class="hex">#E4BA8A</span></li>
+        </ul>
+      </div>
+      <div class="specs-block">
+        <h3>Incluye</h3>
+        <ul class="feature-list">
+          <li>Portada con contador regresivo en tiempo real</li>
+          <li>Galería de fotos de la pareja</li>
+          <li>Sección de ubicación con enlace directo a Google Maps</li>
+          <li>Código de vestimenta y colores reservados a la medida</li>
+          <li>Confirmación de asistencia (RSVP) que guarda cada respuesta</li>
+        </ul>
+      </div>
+      <blockquote class="quote">Tema por defecto de la plantilla — verde salvia y dorado, el modelo actualmente en producción.<span>Nota para el catálogo</span></blockquote>
+    </div>
+  </section>
+
+  <!-- ===== ROSE & BURGUNDY ===== -->
+  <section class="panel" id="panel-rose-burgundy">
+    <div class="device">
+      <div class="device-notch"></div>
+      <div class="device-screen">
+        <div class="card-hero">
+          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
+          <h1>Valentina &amp; Mateo</h1>
+        </div>
+        <div class="card-panel">
+          <h2>¡Nos Casamos!</h2>
+          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
+          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
+          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
+          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
+          <span class="card-cta">Ver Detalles ♥</span>
+        </div>
+        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
+        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="specs-block">
+        <h3>Paleta</h3>
+        <ul class="palette-list">
+          <li><span class="dot" style="--dot:#b5657a"></span>Acento principal <span class="hex">#B5657A</span></li>
+          <li><span class="dot" style="--dot:#7a2e3d"></span>Acento oscuro <span class="hex">#7A2E3D</span></li>
+          <li><span class="dot" style="--dot:#e8c3c9"></span>Acento claro <span class="hex">#E8C3C9</span></li>
+          <li><span class="dot" style="--dot:#4a1620"></span>Vino profundo <span class="hex">#4A1620</span></li>
+          <li><span class="dot" style="--dot:#d4a373"></span>Dorado rosado <span class="hex">#D4A373</span></li>
+        </ul>
+      </div>
+      <div class="specs-block">
+        <h3>Incluye</h3>
+        <ul class="feature-list">
+          <li>Portada con contador regresivo en tiempo real</li>
+          <li>Galería de fotos de la pareja</li>
+          <li>Sección de ubicación con enlace directo a Google Maps</li>
+          <li>Código de vestimenta y colores reservados a la medida</li>
+          <li>Confirmación de asistencia (RSVP) que guarda cada respuesta</li>
+        </ul>
+      </div>
+      <blockquote class="quote">Paleta armada a mano, en tonos rosado y burdeos, como alternativa cálida y romántica al tema por defecto.<span>Nota para el catálogo</span></blockquote>
+    </div>
+  </section>
+
+  <!-- ===== BEIGE & GRANATE ===== -->
+  <section class="panel" id="panel-beige-granate">
+    <div class="device">
+      <div class="device-notch"></div>
+      <div class="device-screen">
+        <div class="card-hero">
+          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
+          <h1>Valentina &amp; Mateo</h1>
+        </div>
+        <div class="card-panel">
+          <h2>¡Nos Casamos!</h2>
+          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
+          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
+          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
+          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
+          <span class="card-cta">Ver Detalles ♥</span>
+        </div>
+        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
+        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="specs-block">
+        <h3>Paleta</h3>
+        <ul class="palette-list">
+          <li><span class="dot" style="--dot:#51252f"></span>Acento principal <span class="hex">#51252F</span></li>
+          <li><span class="dot" style="--dot:#3a1a21"></span>Acento oscuro <span class="hex">#3A1A21</span></li>
+          <li><span class="dot" style="--dot:#d9c3ad"></span>Beige acento <span class="hex">#D9C3AD</span></li>
+          <li><span class="dot" style="--dot:#24100f"></span>Granate profundo <span class="hex">#24100F</span></li>
+          <li><span class="dot" style="--dot:#c9a15a"></span>Dorado cálido <span class="hex">#C9A15A</span></li>
+        </ul>
+      </div>
+      <div class="specs-block">
+        <h3>Incluye</h3>
+        <ul class="feature-list">
+          <li>Portada con contador regresivo en tiempo real</li>
+          <li>Galería de fotos de la pareja</li>
+          <li>Sección de ubicación con enlace directo a Google Maps</li>
+          <li>Código de vestimenta y colores reservados a la medida</li>
+          <li>Confirmación de asistencia (RSVP) que guarda cada respuesta</li>
+        </ul>
+      </div>
+      <blockquote class="quote">Paleta extraída directo del logo de boda en Canva (fondo crema #FAF5E6 y línea en granate).<span>Nota para el catálogo</span></blockquote>
+    </div>
+  </section>
+
+  <!-- ===== BLANCO & NEGRO ===== -->
+  <section class="panel" id="panel-blanco-negro">
+    <div class="device">
+      <div class="device-notch"></div>
+      <div class="device-screen">
+        <div class="card-hero">
+          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
+          <h1>Valentina &amp; Mateo</h1>
+        </div>
+        <div class="card-panel">
+          <h2>¡Nos Casamos!</h2>
+          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
+          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
+          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
+          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
+          <span class="card-cta">Ver Detalles ♥</span>
+        </div>
+        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
+        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="specs-block">
+        <h3>Paleta</h3>
+        <ul class="palette-list">
+          <li><span class="dot" style="--dot:#2b2b2b"></span>Grafito <span class="hex">#2B2B2B</span></li>
+          <li><span class="dot" style="--dot:#171717"></span>Casi negro <span class="hex">#171717</span></li>
+          <li><span class="dot" style="--dot:#000000"></span>Negro <span class="hex">#000000</span></li>
+          <li><span class="dot" style="--dot:#e3e3e3"></span>Gris claro <span class="hex">#E3E3E3</span></li>
+          <li><span class="dot" style="--dot:#ffffff;border-color:rgba(0,0,0,.15)"></span>Blanco <span class="hex">#FFFFFF</span></li>
+        </ul>
+      </div>
+      <div class="specs-block">
+        <h3>Incluye</h3>
+        <ul class="feature-list">
+          <li>Portada con contador regresivo en tiempo real</li>
+          <li>Galería de fotos de la pareja</li>
+          <li>Sección de ubicación con enlace directo a Google Maps</li>
+          <li>Código de vestimenta y colores reservados a la medida</li>
+          <li>Confirmación de asistencia (RSVP) que guarda cada respuesta</li>
+        </ul>
+      </div>
+      <blockquote class="quote">Paleta extraída de un monograma de boda en Canva (trazo 100% negro sobre blanco) — la opción más minimalista, sin ningún color de acento.<span>Nota para el catálogo</span></blockquote>
+    </div>
+  </section>
+
+  <p class="catalog-foot">Modelo base: tarjeta de boda con RSVP · config.php centraliza nombres/fecha/ubicación, y cada tema vive en /themes</p>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const tema = tab.dataset.tema;
+
+      tabs.forEach((t) => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      panels.forEach((p) => p.classList.remove('active'));
+      document.getElementById('panel-' + tema).classList.add('active');
+
+      document.body.dataset.theme = tema;
+    });
+  });
+</script>
+
+</body>
+</html>
