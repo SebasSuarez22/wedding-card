@@ -93,12 +93,9 @@ textarea {
     width: 100%;
 }
 
-/* Panel blanco con fondo acuarela */
+/* Panel con fondo tipo acuarela, hecho con la paleta del tema activo */
 #page1 .part2 {
-    background-image: url('./img/backg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-color: white;
+    background: radial-gradient(120% 100% at 50% 0%, var(--color-accent-light) 0%, var(--color-bg) 60%);
 
     /* Columna simple — sin position absolute, sin height forzado */
     display: flex;
@@ -636,10 +633,7 @@ textarea {
    ======================================== */
 #gracias {
     min-height: 100vh;
-    background-image: url('./img/backg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-color: var(--color-bg);
+    background: radial-gradient(120% 100% at 50% 0%, var(--color-accent-light) 0%, var(--color-bg) 60%);
     display: flex;
     align-items: center;
     justify-content: center;
