@@ -84,7 +84,7 @@ textarea {
 }
 
 #page1 .img h1 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: white;
     font-size: clamp(2rem, 8vw, 3.5rem);
     text-align: center;
@@ -110,7 +110,7 @@ textarea {
 }
 
 #page1 .part2 h1 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-text);
     font-size: clamp(1.4rem, 5.5vw, 2.2rem);
     text-align: center;
@@ -192,13 +192,13 @@ textarea {
 }
 
 .padres-col span:nth-child(2) {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     color: var(--color-accent);
 }
 
 #page1 .part2 .invite {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: clamp(1rem, 4.2vw, 1.5rem);
     text-align: center;
     max-width: 88%;
@@ -357,7 +357,7 @@ textarea {
 }
 
 #page3 .word2 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-text);
     font-size: clamp(1.9rem, 7vw, 3rem);
     display: block;
@@ -376,7 +376,7 @@ textarea {
 }
 
 #page3 .address h1 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-text);
     font-size: clamp(1.2rem, 4.8vw, 1.9rem);
 }
@@ -430,7 +430,7 @@ textarea {
 }
 
 #page4 .main2 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-text);
     font-size: clamp(1.3rem, 5.5vw, 2rem);
     display: block;
@@ -463,14 +463,14 @@ textarea {
 }
 
 #page4 h2 {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-accent-dark);
     font-size: clamp(1rem, 4vw, 1.4rem);
     text-align: center;
 }
 
 #page4 .lluvia {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     color: var(--color-accent-dark);
     font-size: clamp(1rem, 4vw, 1.4rem);
     text-align: center;
