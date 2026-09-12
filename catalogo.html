@@ -80,67 +80,109 @@
     padding:10px 18px; border-radius:50px; cursor:pointer; transition:all 0.15s ease;
   }
   .tab:hover{ color:var(--stage-text); border-color:var(--stage-muted-2); }
-  .tab.active{
-    background:var(--stage-text); color:var(--stage-bg); border-color:var(--stage-text);
-  }
+  .tab.active{ background:var(--stage-text); color:var(--stage-bg); border-color:var(--stage-text); }
   .tab:focus-visible{ outline:2px solid var(--stage-text); outline-offset:2px; }
 
-  /* ===== Cuerpo: mockup + panel ===== */
+  /* ===== Panel por tema ===== */
   .panel{ display:none; }
-  .panel.active{ display:grid; }
-  .panel{
-    grid-template-columns:minmax(0,300px) minmax(280px,1fr);
-    gap:clamp(28px,5vw,64px);
-    align-items:start;
-  }
-  @media (max-width:760px){ .panel{ grid-template-columns:1fr; justify-items:center; } }
+  .panel.active{ display:block; }
 
-  .device{
-    width:100%; max-width:300px; background:#0c0808; border-radius:34px; padding:12px;
-    box-shadow:0 30px 60px rgba(0,0,0,0.45), 0 0 0 1px var(--stage-line);
+  /* ===== Fila de 4 pantallas ===== */
+  .screens{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:clamp(10px,2vw,18px);
+    margin-bottom:clamp(28px,5vw,40px);
   }
-  .device-notch{ width:64px; height:6px; border-radius:6px; background:#000; margin:2px auto 8px; opacity:0.5; }
-  .device-screen{ background:var(--card-bg); border-radius:24px; overflow:hidden; font-family:'Playfair Display',serif; color:var(--card-text); }
+  @media (max-width:820px){ .screens{ grid-template-columns:repeat(2,1fr); max-width:420px; margin-inline:auto; margin-bottom:clamp(28px,5vw,40px); } }
+  @media (max-width:460px){ .screens{ grid-template-columns:1fr; max-width:220px; } }
 
-  .card-hero{
-    height:250px;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%),
-      linear-gradient(160deg, var(--card-accent) 0%, var(--card-accent-dark) 55%, var(--card-accent-darkest) 100%);
-    display:flex; align-items:flex-end; justify-content:center; position:relative;
-  }
-  .card-hero svg{ position:absolute; top:26px; left:50%; transform:translateX(-50%); opacity:0.9; }
-  .card-hero h1{
-    font-family:'Great Vibes',cursive; font-weight:400; color:#fff;
-    font-size:2rem; margin:0 0 14px; text-shadow:0 2px 10px rgba(0,0,0,0.35);
+  .mini-device{ margin:0; display:flex; flex-direction:column; align-items:center; gap:9px; }
+
+  .mini-frame{
+    width:100%; max-width:180px;
+    background:#0c0808;
+    border-radius:20px;
+    padding:7px;
+    box-shadow:0 16px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--stage-line);
   }
 
-  .card-panel{ background:var(--card-bg-alt); padding:22px 20px 30px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
-  .card-panel h2{ font-family:'Great Vibes',cursive; font-weight:400; font-size:1.5rem; margin:0; color:var(--card-text); }
-  .card-panel p{ font-size:0.72rem; line-height:1.5; margin:0; max-width:85%; color:var(--card-text); }
-  .card-verse{ font-style:italic; font-size:0.66rem; color:var(--card-accent-dark); max-width:80%; margin:2px 0 4px; }
-  .card-date{ font-weight:700; font-size:0.85rem; color:var(--card-text); margin-top:2px; }
-
-  .card-counter{ display:flex; gap:6px; width:94%; margin-top:4px; }
-  .card-counter div{ flex:1; background:var(--card-gold); color:#fff; border-radius:8px; padding:7px 2px; text-align:center; }
-  .card-counter strong{ display:block; font-size:1rem; line-height:1.1; }
-  .card-counter span{ display:block; font-size:0.55rem; opacity:0.9; letter-spacing:0.02em; }
-
-  .card-cta{
-    margin-top:6px; background:var(--card-accent-light); color:var(--card-accent-darkest);
-    border:none; border-radius:50px; padding:10px 22px; font-family:'Jost',sans-serif;
-    font-size:0.78rem; font-weight:500; display:inline-flex; align-items:center; gap:8px;
+  .mini-screen{
+    background:var(--card-bg);
+    border-radius:14px;
+    overflow:hidden;
+    font-family:'Playfair Display',serif;
+    color:var(--card-text);
+    display:flex;
+    flex-direction:column;
+    min-height:230px;
   }
 
-  .card-photos{ display:flex; gap:8px; padding:16px; background:var(--card-bg); }
-  .card-photos div{ flex:1; aspect-ratio:3/4; border-radius:12px; background:linear-gradient(155deg, var(--card-accent-light), var(--card-accent)); }
+  .mini-device figcaption{
+    font-family:'Jost',sans-serif;
+    font-size:0.66rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--stage-muted);
+    text-align:center;
+  }
 
-  .card-rsvp{ background:var(--card-bg-alt); padding:20px 18px 26px; text-align:center; }
-  .card-rsvp h3{ font-family:'Playfair Display',serif; font-size:0.95rem; margin:0 0 12px; color:var(--card-text); }
-  .card-rsvp .field{ height:34px; border-radius:20px; background:#fff; border:1px solid var(--card-accent-light); margin-bottom:8px; }
-  .card-rsvp .btn{ margin-top:8px; background:var(--card-accent); color:#fff; border-radius:50px; padding:9px 20px; display:inline-block; font-size:0.78rem; }
+  /* -- Pantalla 1: Portada + Contador -- */
+  .ms-hero{
+    background:linear-gradient(160deg,var(--card-accent) 0%,var(--card-accent-dark) 55%,var(--card-accent-darkest) 100%);
+    padding:14px 8px 10px;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .ms-hero svg{ opacity:0.9; }
+  .ms-hero-name{ font-family:'Great Vibes',cursive; color:#fff; font-size:1rem; text-align:center; line-height:1.1; }
+  .ms-body{
+    background:var(--card-bg-alt); padding:10px 8px 12px;
+    display:flex; flex-direction:column; align-items:center; gap:5px; text-align:center; flex:1;
+  }
+  .ms-script{ font-family:'Great Vibes',cursive; font-size:1.1rem; color:var(--card-text); }
+  .ms-date{ font-size:0.6rem; font-weight:700; }
+  .ms-counter{ display:flex; gap:4px; margin-top:2px; }
+  .ms-counter span{
+    background:var(--card-gold); color:#fff; border-radius:5px; font-size:0.56rem; padding:3px 4px;
+    display:flex; flex-direction:column; align-items:center; line-height:1.15; min-width:22px;
+  }
+  .ms-counter em{ font-style:normal; font-size:0.42rem; opacity:0.85; }
+  .ms-btn{
+    margin-top:4px; background:var(--card-accent-light); color:var(--card-accent-darkest);
+    border-radius:20px; font-family:'Jost',sans-serif; font-size:0.56rem; padding:5px 12px;
+  }
+  .ms-btn-gold{ background:var(--card-gold); color:#fff; }
 
-  .specs{ display:flex; flex-direction:column; gap:clamp(24px,4vw,36px); }
+  /* -- Pantalla 2: Ubicación -- */
+  .ms-location{
+    background:radial-gradient(120% 100% at 50% 0%, var(--card-accent-light) 0%, var(--card-bg) 60%);
+    justify-content:center; align-items:center; text-align:center; padding:16px 10px; gap:3px; flex:1;
+  }
+  .ms-eyebrow{ font-size:0.58rem; letter-spacing:0.06em; color:var(--card-accent-dark); }
+  .ms-loc-title{ font-size:0.64rem; font-weight:700; margin-top:6px; }
+  .ms-loc-addr{ font-size:0.56rem; }
+
+  /* -- Pantalla 3: Vestimenta -- */
+  .ms-dress{ padding:12px 10px; align-items:center; text-align:center; gap:5px; flex:1; }
+  .ms-eyebrow-dark{ font-size:0.56rem; color:var(--card-accent-dark); letter-spacing:0.04em; }
+  .ms-script-dark{ font-family:'Great Vibes',cursive; font-size:1rem; }
+  .ms-photos{ display:flex; gap:5px; width:100%; margin-top:2px; }
+  .ms-photos span{ flex:1; aspect-ratio:3/4; border-radius:6px; background:linear-gradient(155deg,var(--card-accent-light),var(--card-accent)); }
+  .ms-dots{ display:flex; gap:4px; margin-top:4px; }
+  .ms-dots i{ width:10px; height:10px; border-radius:50%; display:block; }
+  .ms-dots i:nth-child(1){ background:#fff; border:1px solid #bbb; }
+  .ms-dots i:nth-child(2){ background:var(--card-accent); }
+  .ms-dots i:nth-child(3){ background:var(--card-accent-light); }
+  .ms-dots i:nth-child(4){ background:var(--card-accent-darkest); }
+  .ms-dots i:nth-child(5){ background:var(--card-accent-bright); }
+
+  /* -- Pantalla 4: Confirmación (RSVP) -- */
+  .ms-rsvp{ background:var(--card-bg-alt); padding:16px 10px; align-items:center; text-align:center; gap:7px; justify-content:center; flex:1; }
+  .ms-rsvp-title{ font-size:0.68rem; font-weight:700; }
+  .ms-field{ width:88%; height:15px; border-radius:10px; background:#fff; border:1px solid var(--card-accent-light); }
+
+  /* ===== Panel de especificaciones ===== */
+  .specs{ display:flex; flex-direction:column; gap:clamp(20px,3.5vw,30px); }
   .specs-block h3{
     font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
     color:var(--stage-muted); margin:0 0 14px; font-weight:500;
@@ -188,24 +230,50 @@
 
   <!-- ===== SAGE & GOLD ===== -->
   <section class="panel active" id="panel-sage-gold">
-    <div class="device">
-      <div class="device-notch"></div>
-      <div class="device-screen">
-        <div class="card-hero">
-          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
-          <h1>Valentina &amp; Mateo</h1>
-        </div>
-        <div class="card-panel">
-          <h2>¡Nos Casamos!</h2>
-          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
-          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
-          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
-          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
-          <span class="card-cta">Ver Detalles ♥</span>
-        </div>
-        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
-        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
-      </div>
+    <div class="screens">
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen">
+          <div class="ms-hero">
+            <svg width="34" height="22" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/></svg>
+            <span class="ms-hero-name">Valentina &amp; Mateo</span>
+          </div>
+          <div class="ms-body">
+            <p class="ms-script">¡Nos Casamos!</p>
+            <p class="ms-date">14 feb 2027</p>
+            <div class="ms-counter"><span>132<em>d</em></span><span>06<em>h</em></span><span>41<em>m</em></span><span>12<em>s</em></span></div>
+            <span class="ms-btn">Ver Detalles</span>
+          </div>
+        </div></div>
+        <figcaption>Portada &amp; Contador</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-location">
+          <p class="ms-eyebrow">NUESTRA</p>
+          <p class="ms-script">Boda</p>
+          <p class="ms-loc-title">Ceremonia y Recepción</p>
+          <p class="ms-loc-addr">Calle 44 # 44 - 66</p>
+          <span class="ms-btn ms-btn-gold">Ver Ubicación</span>
+        </div></div>
+        <figcaption>Ubicación</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-dress">
+          <p class="ms-eyebrow-dark">CÓDIGO DE</p>
+          <p class="ms-script-dark">Vestimenta</p>
+          <div class="ms-photos"><span></span><span></span></div>
+          <div class="ms-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        </div></div>
+        <figcaption>Código de Vestimenta</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-rsvp">
+          <p class="ms-rsvp-title">Confirma tu asistencia</p>
+          <span class="ms-field"></span>
+          <span class="ms-field"></span>
+          <span class="ms-btn">Confirmar ♥</span>
+        </div></div>
+        <figcaption>Confirmación (RSVP)</figcaption>
+      </figure>
     </div>
     <div class="specs">
       <div class="specs-block">
@@ -234,24 +302,50 @@
 
   <!-- ===== ROSE & BURGUNDY ===== -->
   <section class="panel" id="panel-rose-burgundy">
-    <div class="device">
-      <div class="device-notch"></div>
-      <div class="device-screen">
-        <div class="card-hero">
-          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
-          <h1>Valentina &amp; Mateo</h1>
-        </div>
-        <div class="card-panel">
-          <h2>¡Nos Casamos!</h2>
-          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
-          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
-          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
-          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
-          <span class="card-cta">Ver Detalles ♥</span>
-        </div>
-        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
-        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
-      </div>
+    <div class="screens">
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen">
+          <div class="ms-hero">
+            <svg width="34" height="22" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/></svg>
+            <span class="ms-hero-name">Valentina &amp; Mateo</span>
+          </div>
+          <div class="ms-body">
+            <p class="ms-script">¡Nos Casamos!</p>
+            <p class="ms-date">14 feb 2027</p>
+            <div class="ms-counter"><span>132<em>d</em></span><span>06<em>h</em></span><span>41<em>m</em></span><span>12<em>s</em></span></div>
+            <span class="ms-btn">Ver Detalles</span>
+          </div>
+        </div></div>
+        <figcaption>Portada &amp; Contador</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-location">
+          <p class="ms-eyebrow">NUESTRA</p>
+          <p class="ms-script">Boda</p>
+          <p class="ms-loc-title">Ceremonia y Recepción</p>
+          <p class="ms-loc-addr">Calle 44 # 44 - 66</p>
+          <span class="ms-btn ms-btn-gold">Ver Ubicación</span>
+        </div></div>
+        <figcaption>Ubicación</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-dress">
+          <p class="ms-eyebrow-dark">CÓDIGO DE</p>
+          <p class="ms-script-dark">Vestimenta</p>
+          <div class="ms-photos"><span></span><span></span></div>
+          <div class="ms-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        </div></div>
+        <figcaption>Código de Vestimenta</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-rsvp">
+          <p class="ms-rsvp-title">Confirma tu asistencia</p>
+          <span class="ms-field"></span>
+          <span class="ms-field"></span>
+          <span class="ms-btn">Confirmar ♥</span>
+        </div></div>
+        <figcaption>Confirmación (RSVP)</figcaption>
+      </figure>
     </div>
     <div class="specs">
       <div class="specs-block">
@@ -280,24 +374,50 @@
 
   <!-- ===== BEIGE & GRANATE ===== -->
   <section class="panel" id="panel-beige-granate">
-    <div class="device">
-      <div class="device-notch"></div>
-      <div class="device-screen">
-        <div class="card-hero">
-          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
-          <h1>Valentina &amp; Mateo</h1>
-        </div>
-        <div class="card-panel">
-          <h2>¡Nos Casamos!</h2>
-          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
-          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
-          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
-          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
-          <span class="card-cta">Ver Detalles ♥</span>
-        </div>
-        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
-        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
-      </div>
+    <div class="screens">
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen">
+          <div class="ms-hero">
+            <svg width="34" height="22" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/></svg>
+            <span class="ms-hero-name">Valentina &amp; Mateo</span>
+          </div>
+          <div class="ms-body">
+            <p class="ms-script">¡Nos Casamos!</p>
+            <p class="ms-date">14 feb 2027</p>
+            <div class="ms-counter"><span>132<em>d</em></span><span>06<em>h</em></span><span>41<em>m</em></span><span>12<em>s</em></span></div>
+            <span class="ms-btn">Ver Detalles</span>
+          </div>
+        </div></div>
+        <figcaption>Portada &amp; Contador</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-location">
+          <p class="ms-eyebrow">NUESTRA</p>
+          <p class="ms-script">Boda</p>
+          <p class="ms-loc-title">Ceremonia y Recepción</p>
+          <p class="ms-loc-addr">Calle 44 # 44 - 66</p>
+          <span class="ms-btn ms-btn-gold">Ver Ubicación</span>
+        </div></div>
+        <figcaption>Ubicación</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-dress">
+          <p class="ms-eyebrow-dark">CÓDIGO DE</p>
+          <p class="ms-script-dark">Vestimenta</p>
+          <div class="ms-photos"><span></span><span></span></div>
+          <div class="ms-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        </div></div>
+        <figcaption>Código de Vestimenta</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-rsvp">
+          <p class="ms-rsvp-title">Confirma tu asistencia</p>
+          <span class="ms-field"></span>
+          <span class="ms-field"></span>
+          <span class="ms-btn">Confirmar ♥</span>
+        </div></div>
+        <figcaption>Confirmación (RSVP)</figcaption>
+      </figure>
     </div>
     <div class="specs">
       <div class="specs-block">
@@ -326,24 +446,50 @@
 
   <!-- ===== BLANCO & NEGRO ===== -->
   <section class="panel" id="panel-blanco-negro">
-    <div class="device">
-      <div class="device-notch"></div>
-      <div class="device-screen">
-        <div class="card-hero">
-          <svg width="72" height="46" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="2"/></svg>
-          <h1>Valentina &amp; Mateo</h1>
-        </div>
-        <div class="card-panel">
-          <h2>¡Nos Casamos!</h2>
-          <p class="card-verse">Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.<br>Eclesiastés 4:9</p>
-          <p class="card-date">5:00 PM · 14 de febrero del 2027</p>
-          <div class="card-counter"><div><strong>132</strong><span>Días</span></div><div><strong>06</strong><span>Horas</span></div><div><strong>41</strong><span>Min</span></div><div><strong>12</strong><span>Seg</span></div></div>
-          <p style="margin-top:6px;">Te invitamos a ser parte de este momento especial</p>
-          <span class="card-cta">Ver Detalles ♥</span>
-        </div>
-        <div class="card-photos" aria-hidden="true"><div></div><div></div></div>
-        <div class="card-rsvp"><h3>Confirma tu asistencia</h3><div class="field"></div><div class="field"></div><span class="btn">Confirmar Asistencia ♥</span></div>
-      </div>
+    <div class="screens">
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen">
+          <div class="ms-hero">
+            <svg width="34" height="22" viewBox="0 0 72 46" fill="none"><circle cx="27" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/><circle cx="45" cy="23" r="15" stroke="#fff" stroke-opacity="0.9" stroke-width="3"/></svg>
+            <span class="ms-hero-name">Valentina &amp; Mateo</span>
+          </div>
+          <div class="ms-body">
+            <p class="ms-script">¡Nos Casamos!</p>
+            <p class="ms-date">14 feb 2027</p>
+            <div class="ms-counter"><span>132<em>d</em></span><span>06<em>h</em></span><span>41<em>m</em></span><span>12<em>s</em></span></div>
+            <span class="ms-btn">Ver Detalles</span>
+          </div>
+        </div></div>
+        <figcaption>Portada &amp; Contador</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-location">
+          <p class="ms-eyebrow">NUESTRA</p>
+          <p class="ms-script">Boda</p>
+          <p class="ms-loc-title">Ceremonia y Recepción</p>
+          <p class="ms-loc-addr">Calle 44 # 44 - 66</p>
+          <span class="ms-btn ms-btn-gold">Ver Ubicación</span>
+        </div></div>
+        <figcaption>Ubicación</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-dress">
+          <p class="ms-eyebrow-dark">CÓDIGO DE</p>
+          <p class="ms-script-dark">Vestimenta</p>
+          <div class="ms-photos"><span></span><span></span></div>
+          <div class="ms-dots"><i></i><i></i><i></i><i></i><i></i></div>
+        </div></div>
+        <figcaption>Código de Vestimenta</figcaption>
+      </figure>
+      <figure class="mini-device">
+        <div class="mini-frame"><div class="mini-screen ms-rsvp">
+          <p class="ms-rsvp-title">Confirma tu asistencia</p>
+          <span class="ms-field"></span>
+          <span class="ms-field"></span>
+          <span class="ms-btn">Confirmar ♥</span>
+        </div></div>
+        <figcaption>Confirmación (RSVP)</figcaption>
+      </figure>
     </div>
     <div class="specs">
       <div class="specs-block">
@@ -353,7 +499,7 @@
           <li><span class="dot" style="--dot:#171717"></span>Casi negro <span class="hex">#171717</span></li>
           <li><span class="dot" style="--dot:#000000"></span>Negro <span class="hex">#000000</span></li>
           <li><span class="dot" style="--dot:#e3e3e3"></span>Gris claro <span class="hex">#E3E3E3</span></li>
-          <li><span class="dot" style="--dot:#ffffff;border-color:rgba(0,0,0,.15)"></span>Blanco <span class="hex">#FFFFFF</span></li>
+          <li><span class="dot" style="--dot:#ffffff;border-color:rgba(0,0,0,0.15)"></span>Blanco <span class="hex">#FFFFFF</span></li>
         </ul>
       </div>
       <div class="specs-block">
