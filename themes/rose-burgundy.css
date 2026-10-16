@@ -1,0 +1,16 @@
+/* ========================================
+   TEMA: Rosado / Burdeos
+   Cárgalo después de stylesheet.css para
+   sobreescribir la paleta por defecto.
+   ======================================== */
+:root {
+    --color-text: #4a2f30;
+    --color-bg: #faf3f2;
+    --color-bg-alt: #fdf7f6;
+    --color-accent: #b5657a;
+    --color-accent-light: #e8c3c9;
+    --color-accent-dark: #7a2e3d;
+    --color-accent-darkest: #4a1620;
+    --color-accent-bright: #c94f6d;
+    --color-gold: #d4a373;
+}

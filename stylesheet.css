@@ -160,7 +160,7 @@ textarea {
 .part2 {
     background:
         linear-gradient(180deg, rgba(251, 246, 238, 0.92), rgba(251, 246, 238, 0.96)),
-        url("./img/backg.png") center / cover no-repeat;
+        url("./img/backg.jpg") center / cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -842,6 +842,65 @@ textarea {
     font-family: var(--font-ui);
     font-size: 0.92rem;
     cursor: pointer;
+}
+
+/* ——— GRACIAS (RESULTADO DEL RSVP) ——— */
+.sheet--thanks {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 6vw, 40px);
+    background: radial-gradient(120% 100% at 50% 0%, #f1e4cf 0%, var(--paper) 60%);
+}
+
+.gracias-card {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    padding: clamp(28px, 7vw, 44px) clamp(20px, 5vw, 32px);
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.gracias-card img {
+    width: clamp(56px, 14vw, 80px);
+}
+
+.gracias-title {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    line-height: 1.15;
+}
+
+.gracias-success {
+    color: var(--sunset);
+}
+
+.gracias-error {
+    color: #8a3f3f;
+}
+
+.gracias-card p {
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+}
+
+.gracias-card a.wedding-button-secondary {
+    text-decoration: none;
+}
+
+@media (min-width: 700px) {
+    .sheet--thanks {
+        min-height: calc(100dvh - 84px);
+    }
 }
 
 /* ——— RESPONSIVE ——— */

@@ -1,0 +1,16 @@
+/* ========================================
+   TEMA: Azul / Plateado
+   Cárgalo después de stylesheet.css para
+   sobreescribir la paleta por defecto.
+   ======================================== */
+:root {
+    --color-text: #2c3e4a;
+    --color-bg: #f4f7f9;
+    --color-bg-alt: #f8fafb;
+    --color-accent: #5b7c99;
+    --color-accent-light: #c7d9e3;
+    --color-accent-dark: #2f5773;
+    --color-accent-darkest: #1c3347;
+    --color-accent-bright: #7ea8c4;
+    --color-gold: #a8b8c0;
+}

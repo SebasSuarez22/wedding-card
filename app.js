@@ -38,15 +38,13 @@ function verDetalles() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.search.includes("success") || window.location.search.includes("error")) {
-        ["page2", "page3", "page4", "page5"].forEach((id) => {
-            const el = document.getElementById(id);
-            if (el) el.classList.remove("is-hidden");
-        });
-        const form = document.getElementById("page5");
-        if (form) {
-            form.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    }
-});
+// Tras confirmar el RSVP, se oculta toda la invitación y queda solo la tarjeta de gracias
+function mostrarGracias() {
+    ["page1", "page2", "page3", "page4", "page5"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("is-hidden");
+    });
+
+    const gracias = document.getElementById("gracias");
+    if (gracias) gracias.classList.remove("is-hidden");
+}

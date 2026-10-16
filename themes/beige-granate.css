@@ -1,0 +1,18 @@
+/* ========================================
+   TEMA: Beige / Granate
+   Extraído del logo de boda "Gina & Sebas" en Canva
+   (fondo #FAF5E6, línea/acento #51252F).
+   Cárgalo después de stylesheet.css para
+   sobreescribir la paleta por defecto.
+   ======================================== */
+:root {
+    --color-text: #484343;
+    --color-bg: #faf5e6;
+    --color-bg-alt: #fdfbf3;
+    --color-accent: #51252f;
+    --color-accent-light: #d9c3ad;
+    --color-accent-dark: #3a1a21;
+    --color-accent-darkest: #24100f;
+    --color-accent-bright: #8a3a3f;
+    --color-gold: #c9a15a;
+}

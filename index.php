@@ -1,11 +1,5 @@
 <?php
-$servername = "sql100.infinityfree.com";
-$username = "if0_41605874";
-$password = "ctVnlzQhMNSAF";
-$dbname = "if0_41605874_wedding";
-
-mysqli_report(MYSQLI_REPORT_OFF);
-$conn = @new mysqli($servername, $username, $password, $dbname);
+$config = require __DIR__ . '/config.php';
 
 $rsvpStatus = '';
 if (isset($_GET['success'])) {
@@ -13,7 +7,11 @@ if (isset($_GET['success'])) {
 } elseif (isset($_GET['error'])) {
     $rsvpStatus = 'error';
 }
-$fechaBoda = new DateTime('2031-06-27 17:00:00', new DateTimeZone('America/Bogota'));
+$f = $config['fecha'];
+$fechaBoda = new DateTime(
+    sprintf('%04d-%02d-%02d %02d:%02d:00', $f['anio'], $f['mes'], $f['dia'], $f['hora'] ?? 0, $f['minuto'] ?? 0),
+    new DateTimeZone('America/Bogota')
+);
 $meses = [
     1 => 'enero',
     'febrero',
@@ -32,6 +30,8 @@ $dias  = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sáb
 
 $fechaLarga  = $fechaBoda->format('j') . ' de ' . $meses[(int) $fechaBoda->format('n')] . ' de ' . $fechaBoda->format('Y');
 $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
+$horaTexto   = $fechaBoda->format('g:i') . ' ' . ($fechaBoda->format('A') === 'AM' ? 'a.m.' : 'p.m.');
+$novios      = $config['novio'] . ' y ' . $config['novia'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,8 +40,8 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1C2430">
-    <meta name="description" content="Sebastian y Gina se casan el <?= $fechaLarga ?>. Confirma tu asistencia.">
-    <title><?= $fechaBoda->format('d.m.Y') ?></title>
+    <meta name="description" content="<?= htmlspecialchars($novios) ?> se casan el <?= $fechaLarga ?>. Confirma tu asistencia.">
+    <title><?= htmlspecialchars($config['titulo_pagina']) ?> · <?= $fechaBoda->format('d.m.Y') ?></title>
     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,21 +57,21 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
         <section id="page1" class="sheet sheet--cover">
             <div class="hero">
                 <p class="hero__eyebrow">Boda</p>
-                <h1 class="hero__names">Sebastian <span>&amp;</span> Gina</h1>
+                <h1 class="hero__names"><?= htmlspecialchars($config['novio']) ?> <span>&amp;</span> <?= htmlspecialchars($config['novia']) ?></h1>
                 <p class="hero__date"><?= $fechaBoda->format('d · m · Y') ?></p>
             </div>
 
             <div class="part2">
                 <div class="part2__body">
                 <p class="kicker">Con alegría</p>
-                <h2 class="script-title">Sebastian y Gina</h2>
-                <p class="lead">La historia más bonita que el destino escribió en nuestras vidas está por empezar.</p>
+                <h2 class="script-title"><?= htmlspecialchars($novios) ?></h2>
+                <p class="lead"><?= htmlspecialchars($config['historia']) ?></p>
                 <p class="announce">¡Nos casamos!</p>
                 <img class="rings" src="./img/rings.png" alt="">
 
                 <blockquote class="versicle">
-                    <p>Mejor son dos que uno, porque obtienen más fruto de su esfuerzo.</p>
-                    <cite>Eclesiastés 4:9</cite>
+                    <p><?= htmlspecialchars($config['versiculo_texto']) ?></p>
+                    <cite><?= htmlspecialchars($config['versiculo_cita']) ?></cite>
                 </blockquote>
 
                 <div class="ornament" aria-hidden="true"><span></span></div>
@@ -79,21 +79,18 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
                 <div class="padres">
                     <p class="padres-titulo">Con la bendición de Dios y nuestros queridos padres</p>
                     <div class="padres-cols">
+                        <?php foreach ($config['padres'] as $pareja): ?>
                         <div class="padres-col">
-                            <span>Antonio Suárez</span>
+                            <span><?= htmlspecialchars($pareja[0]) ?></span>
                             <span class="amp">&amp;</span>
-                            <span>Carmen Peñaloza</span>
+                            <span><?= htmlspecialchars($pareja[1]) ?></span>
                         </div>
-                        <div class="padres-col">
-                            <span>Manuel Pertuz</span>
-                            <span class="amp">&amp;</span>
-                            <span>Rosiris Martínez</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
                 <div class="when">
-                    <p class="when__time">5:00 p.m.</p>
+                    <p class="when__time"><?= $horaTexto ?></p>
                     <p class="when__date"><?= $fechaConDia ?></p>
                 </div>
                 <p class="clothe">Alista tu mejor traje. Solo faltan…</p>
@@ -150,10 +147,10 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
             </div>
             <div class="address">
                 <img class="cups" src="./img/cups.png" alt="">
-                <h2>Ceremonia y recepción</h2>
-                <p class="venue">Hotel Génova</p>
-                <p>Calle 44 # 44 - 66<br>Norte Centro Histórico, Barranquilla</p>
-                <a class="btn-ubicacion" href="https://www.google.com/maps/dir//Hotel+Genova,+Cl.+44+%2344-66,+Nte.+Centro+Historico,+Barranquilla,+Atl%C3%A1ntico/@10.9902587,-74.7902482,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x8ef42d63a462df4f:0xd3221847d001bfd0!2m2!1d-74.7844285!2d10.985023?entry=ttu" target="_blank" rel="noopener noreferrer">
+                <h2><?= htmlspecialchars($config['ubicacion_titulo']) ?></h2>
+                <p class="venue"><?= htmlspecialchars($config['ubicacion_lugar']) ?></p>
+                <p><?= htmlspecialchars($config['ubicacion_direccion']) ?><br><?= htmlspecialchars($config['ubicacion_zona']) ?></p>
+                <a class="btn-ubicacion" href="<?= htmlspecialchars($config['ubicacion_maps_url']) ?>" target="_blank" rel="noopener noreferrer">
                     Ver ubicación
                 </a>
             </div>
@@ -165,7 +162,7 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
 
             <div class="vestimenta-container">
                 <figure class="vestimenta-item">
-                    <img src="./img/boy1.png" alt="Traje formal para caballero">
+                    <img src="./img/boy1.jpg" alt="Traje formal para caballero">
                     <figcaption>Formal</figcaption>
                 </figure>
                 <figure class="vestimenta-item">
@@ -188,9 +185,9 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
 
             <div class="closing">
                 <p class="lluvia">Lluvia de sobres</p>
-                <p class="wait">Te esperamos</p>
+                <p class="wait"><?= htmlspecialchars($config['despedida']) ?></p>
                 <p class="love">Con amor</p>
-                <p class="sign">Sebastian y Gina</p>
+                <p class="sign"><?= htmlspecialchars($novios) ?></p>
             </div>
         </section>
 
@@ -198,12 +195,6 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
             <p class="kicker">RSVP</p>
             <h2>Confirma tu asistencia</h2>
             <p class="rsvp-lead">Nos ayuda mucho saber si estarás con nosotros.</p>
-
-            <?php if ($rsvpStatus === 'success'): ?>
-                <p class="banner banner--ok" role="status">¡Listo! Recibimos tu confirmación. Gracias.</p>
-            <?php elseif ($rsvpStatus === 'error'): ?>
-                <p class="banner banner--err" role="alert">No pudimos guardar tu respuesta. Inténtalo de nuevo.</p>
-            <?php endif; ?>
 
             <form method="POST" action="confirmar.php" novalidate>
                 <div class="form-fields">
@@ -238,9 +229,26 @@ $fechaConDia = $dias[(int) $fechaBoda->format('w')] . ' ' . $fechaLarga;
             </form>
         </section>
 
+        <section id="gracias" class="sheet sheet--thanks is-hidden" aria-live="polite">
+            <div class="gracias-card">
+                <img src="./img/rings.png" alt="">
+                <?php if ($rsvpStatus === 'error'): ?>
+                    <h2 class="gracias-title gracias-error">No pudimos guardar tu respuesta</h2>
+                    <p>Inténtalo de nuevo en unos minutos.</p>
+                    <a href="index.php" class="wedding-button-secondary">Volver a intentar</a>
+                <?php else: ?>
+                    <h2 class="gracias-title gracias-success">¡Gracias por confirmar tu asistencia!</h2>
+                    <p>Nos vemos el <?= htmlspecialchars($fechaConDia) ?></p>
+                <?php endif; ?>
+            </div>
+        </section>
+
     </main>
 
     <script src="app.js"></script>
+    <?php if ($rsvpStatus !== ''): ?>
+    <script>mostrarGracias();</script>
+    <?php endif; ?>
 </body>
 
 </html>
