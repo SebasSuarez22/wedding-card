@@ -25,6 +25,7 @@ setInterval(actualizarContador, 1000);
 actualizarContador();
 
 function verDetalles() {
+    document.querySelector(".invite-card")?.classList.add("is-unfolded");
     ["page2", "page3", "page4", "page5"].forEach((id) => {
         const el = document.getElementById(id);
         if (el) el.classList.remove("is-hidden");

@@ -53,11 +53,13 @@ $novios      = $config['novio'] . ' y ' . $config['novia'];
     <div class="ambient" aria-hidden="true"></div>
 
     <main class="invite-card">
+        <div class="card-frame" aria-hidden="true"></div>
 
         <section id="page1" class="sheet sheet--cover">
             <div class="hero">
                 <p class="hero__eyebrow">Boda</p>
                 <h1 class="hero__names"><?= htmlspecialchars($config['novio']) ?> <span>&amp;</span> <?= htmlspecialchars($config['novia']) ?></h1>
+                <span class="hero__rule" aria-hidden="true"></span>
                 <p class="hero__date"><?= $fechaBoda->format('d · m · Y') ?></p>
             </div>
 
@@ -175,11 +177,11 @@ $novios      = $config['novio'] . ' y ' . $config['novia'];
                 <h3>Colores reservados</h3>
                 <p class="cr-note">Te pedimos evitar estos tonos</p>
                 <div class="circles" aria-label="Colores reservados">
-                    <span class="cir cir1" title="Blanco"></span>
-                    <span class="cir cir2" title="Verde olivo"></span>
-                    <span class="cir cir3" title="Verde claro"></span>
-                    <span class="cir cir4" title="Verde oscuro"></span>
-                    <span class="cir cir5" title="Verde vivo"></span>
+                    <span class="swatch"><i class="cir cir1"></i><em>Blanco</em></span>
+                    <span class="swatch"><i class="cir cir2"></i><em>Olivo</em></span>
+                    <span class="swatch"><i class="cir cir3"></i><em>Sage</em></span>
+                    <span class="swatch"><i class="cir cir4"></i><em>Bosque</em></span>
+                    <span class="swatch"><i class="cir cir5"></i><em>Musgo</em></span>
                 </div>
             </div>
 
@@ -196,7 +198,7 @@ $novios      = $config['novio'] . ' y ' . $config['novia'];
             <h2>Confirma tu asistencia</h2>
             <p class="rsvp-lead">Nos ayuda mucho saber si estarás con nosotros.</p>
 
-            <form method="POST" action="confirmar.php" novalidate>
+            <form class="rsvp-panel" method="POST" action="confirmar.php" novalidate>
                 <div class="form-fields">
                     <div class="form-field">
                         <input type="text" id="nombre" name="nombre" minlength="3" placeholder=" " autocomplete="given-name" required>
@@ -210,14 +212,14 @@ $novios      = $config['novio'] . ' y ' . $config['novia'];
 
                 <fieldset class="radio-group">
                     <legend class="visually-hidden">¿Asistirás?</legend>
-                    <div>
+                    <label class="choice">
                         <input type="radio" name="respuesta" value="si" id="si" checked>
-                        <label for="si">Sí asistiré</label>
-                    </div>
-                    <div>
+                        <span>Sí asistiré</span>
+                    </label>
+                    <label class="choice">
                         <input type="radio" name="respuesta" value="no" id="no">
-                        <label for="no">No podré ir</label>
-                    </div>
+                        <span>No podré ir</span>
+                    </label>
                 </fieldset>
 
                 <button type="submit" class="wedding-button">
